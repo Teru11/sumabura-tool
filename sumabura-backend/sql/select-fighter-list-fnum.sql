@@ -1,0 +1,17 @@
+SELECT
+    FT.FNUM
+    , FT.FNAME
+    , FT.FRYAKU
+    , FT.FACT
+    , SUM(WT.WIN) AS win
+    , SUM(WT.loss) AS loss
+    , SUM(win + loss) AS total
+FROM
+    SUMABURA.FIGHTER_LIST AS FT 
+    INNER JOIN SUMABURA.WIN_LOSS_MANAGER AS WT 
+        ON (WT.FNUM = FT.FNUM)
+GROUP BY
+  FT.FNUM
+ORDER BY
+  FT.FNUM ASC
+  

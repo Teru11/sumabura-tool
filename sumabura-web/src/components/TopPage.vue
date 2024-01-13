@@ -6,8 +6,8 @@
     <!-- メニューヘッダー -->
     <MenuHeader />
 
-    <!-- トップ画面 -->
-    <div class="top-page-frame">
+    <!-- ページ -->
+    <div class="page-frame">
       
       <!-- 勝率表 -->
       <div class="top-winloss-frame">
@@ -29,6 +29,7 @@ import TopHeader from "./common/TopHeader.vue";
 import MenuHeader from "./common/MenuHeader.vue";
 import WinLossTable from "./view/WinLossTable.vue";
 import EnemyFighter  from "./view/EnemyFighter.vue";
+import "../css/page.css";
 
 export default {
   components: {
@@ -41,42 +42,6 @@ export default {
 </script>
 
 <style scoped>
-/* [トップ画面] 大枠 */
-.top-page-frame {
-  /* 縮小時 横幅固定サイズ */
-  min-width: 400px;  
-  /* 内側 余白 */     
-  padding: 20px;
-  /* 外側 余白（横幅） */
-  margin: 0 25%;
-  /* [Debug用]1pxの黒い実線の枠 */
-  border: 1px solid #000; 
-}
-
-/* 4分割(3/4)サイズの場合 */
-@media (max-width: 2000px) {
-  .top-page-frame {
-  /* 外側 余白（横幅） */
-  margin: 0 18%;
-  }
-}
-
-/* 画面より大きいサイズの場合 */
-@media (max-width: 1800px) {
-  .top-page-frame {
-  /* 外側 余白（横幅） */
-  margin: 0 10%;
-  }
-}
-
-/* 画面半分サイズの場合(本当は1200px) */
-@media (max-width: 1300px) {
-  .top-page-frame {
-  /* 外側 余白（横幅） */
-  margin: 0 0%;
-  }
-}
-
 /* [トップ画面] 勝率表（枠）*/
 .top-winloss-frame {
   /* 高さ */

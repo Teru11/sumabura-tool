@@ -207,9 +207,66 @@ app.post(rootpath + '/top-updateTaisaku', async (req, res) => {
     }
 });
 
+/** [ 勝率表画面 ][ 略称検索 ][ http://localhost:3000/sumabura/winloss-myInfo ] */
+app.post(rootpath + '/winloss-myInfo', async (req, res) => {
+    logger.info('[ 勝率表画面 ][ 略称検索 ][ 開始 ]');
+    try {
+        // 条件パラメータ設定
+        const parms = [req.body.fryaku];
+        // データ取得
+        const data = await dbAccess.getSelectDataList('winloss-myInfo', parms);
+
+        if (Array.isArray(data)) {
+            logger.info('データ取得件数: ' + data.length + ' 件');
+        } else {
+            logger.info('データが取得できませんでした。');
+        }
+
+        // レスポンス設定
+        res.status(200).json(data);
+    } catch (error) {
+        logger.error('Error:' + error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        logger.info('[ 勝率表画面 ][ 略称検索 ][ 終了 ]');
+    }
+});
+
+/** [ ファイター一覧画面 ][ 初期表示 ][ http://localhost:3000/sumabura/fighter-list ] */
+app.post(rootpath + '/fighter-list', async (req, res) => {
+    logger.info('[ ファイター一覧画面 ][ 初期表示 ][ 開始 ]');
+    try {
+        let sqlFileName;
+
+        // 条件パラメータ設定
+        if (req.body.sort == "fnum") {
+            sqlFileName = 'fighter-list-fnum';
+        } else {
+            sqlFileName = 'fighter-list-total';
+        }
+
+        // データ取得
+        const data = await dbAccess.getSelectDataList(sqlFileName);
+
+        if (Array.isArray(data)) {
+            logger.info('データ取得件数: ' + data.length + ' 件');
+        } else {
+            logger.info('データが取得できませんでした。');
+        }
+
+        // レスポンス設定
+        res.status(200).json(data);
+    } catch (error) {
+        logger.error('Error:' + error);
+        res.status(500).send('Internal Server Error');
+    } finally {
+        logger.info('[ ファイター一覧画面 ][ 初期表示 ][ 終了 ]');
+    }
+});
+
 /** [ 汎用 ][ 出現率取得 ][ http://localhost:3000/sumabura/encount-rate ] */
 app.post(rootpath + '/encount-rate', async (req, res) => {
-    logger.info('[ 汎用 ][ 出現率取得 ][ 開始 ]');
+    logger.info('[ 汎用 ][ 略称検索 ][ 開始 ]');
     try {
         // 条件パラメータ設定
         const parms = [req.body.fryaku];
