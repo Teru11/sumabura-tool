@@ -44,24 +44,38 @@ RDB：PostgreSQL<br>
 # Git連携
 [Github](https://github.com/Teru11/sumabura-tool)
 
-### リポジトリ連携設定
+### リポジトリ連携設定（SSH接続）
 ```shell
+# GitリポジトリにリモートリポジトリのURLを追加するため
 git remote add origin git@github.com:Teru11/sumabura-tool.git
-```
-git remote add: リモートリポジトリを追加するGitのコマンド。<br>
-origin: リモートリポジトリに対する通常の名前。<br>
-git@github.com:Teru11/sumabura-tool.git: GitHub上のリモートリポジトリのURL。<br>
 
-```shell
-### リモートリポジトリに接続する際にフィンガープリントを確認
+### GitHubなどのリモートホストの公開鍵をローカルに取得する
+# GitHubの公開SSHキーが表示されました。これは、GitHubへのSSH接続を確立する際に使用される公開鍵
 ssh-keyscan github.com
 
-### SSHキーに設定する。
+### SSHキーを生成
 ssh-keygen -t rsa -b 2048
+# Enter file in which to save the key (C:\Users\terut/.ssh/id_rsa): [Enter]
+# Enter passphrase (empty for no passphrase):[いつもの]
+# ->「C:\Users\terut\.ssh\id_rsa」（秘密鍵）と「C:\Users\terut\.ssh\id_rsa.pub」（公開鍵）が作成される。
+
+### SSHキーの表示（公開鍵の表示） 
+cat ~/.ssh/id_rsa.pub
+# 結果をGit/リポジトリ/設定/Deploy keys/Add newに設定
+# タイトル：ssh-key
+
+###　認証確認
+ssh -T git@github.com
+# 初回に「Are you sure you want to continue connecting (yes/no/[fingerprint])? 」は「yes」
+# [Hi Teru11/sumabura-tool! You've successfully authenticated, but GitHub does not provide shell access.]は問題なし
+
+# Gitに対してプッシュやプルができるようになる。
+
+# プッシュ
+git push origin main
+git push origin dev
+
 ```
-ssh-keygen: SSHキーを生成するコマンド。<br>
--t rsa: RSAアルゴリズムを使用して鍵を生成するオプション。<br>
--b 2048: 2048ビットの鍵を生成するオプション。<br>
 
 ----------------------------------------------------------
 # 環境構築（WEB）
