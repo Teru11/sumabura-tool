@@ -79,6 +79,11 @@ git push origin dev
 git checkout main 
 git checkout dev
 
+#　mainに反映[mainブランチに移動/devブランチをmainブランチにマージ/マージをリモートリポジトリにプッシュ]
+git checkout main
+git merge dev
+git push origin main
+
 ```
 
 ----------------------------------------------------------
