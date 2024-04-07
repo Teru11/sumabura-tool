@@ -75,6 +75,10 @@ ssh -T git@github.com
 git push origin main
 git push origin dev
 
+# チェックアウト
+git checkout main 
+git checkout dev
+
 ```
 
 ----------------------------------------------------------
