@@ -1,0 +1,20 @@
+server:
+  port: 3000
+  basePath: /sumabura
+
+database:
+  development:
+    user: 'postgres'
+    host: 'localhost'
+    database: 'sumabura'
+    password: 'postgres'
+    port: 5432
+    schema: 'dev'
+
+  production:
+    user: 'postgres'
+    host: 'localhost'
+    database: 'sumabura'
+    password: 'postgres'
+    port: 5432
+    schema: 'prd'

@@ -1,0 +1,3 @@
+-- devスキーマの削除と作成
+DROP SCHEMA IF EXISTS dev CASCADE;
+CREATE SCHEMA IF NOT EXISTS dev;
