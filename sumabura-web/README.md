@@ -1,29 +1,52 @@
-# sumabura-web
-
-This template should help get you started developing with Vue 3 in Vite.
-
-## Recommended IDE Setup
-
-[VSCode](https://code.visualstudio.com/) + [Volar](https://marketplace.visualstudio.com/items?itemName=Vue.volar) (and disable Vetur).
-
-## Customize configuration
-
-See [Vite Configuration Reference](https://vite.dev/config/).
-
-## Project Setup
+# 環境構築
+```shell
+# Vueプロジェクト作成（最新）
+npm init vue@latest
+```
+### 作成質問
+Project name：`sumabura-web`
+<table>
+<tr>
+    <td>typescript</td><td>no</td>
+    <td>typescript使いたいか</td>
+</tr>
+<tr>
+    <td>JSX</td><td>no</td>
+    <td>javascriptにhtmlのタグを書くか?（Reactだと使用）</td>
+</tr>
+<tr>
+    <td>Vue Router</td><td>yes</td>
+    <td>SPAだと必須</td>
+</tr>
+<tr>
+    <td>Pinia</td><td>no</td>
+    <td>状態管理パッケージ。同様のツールとしてvuexなどがある</td>
+</tr>
+<tr>
+    <td>Vitest</td><td>no</td>
+    <td>単体テスト用（フロントは不要）</td>
+</tr>
+<tr>
+    <td>ESLint</td><td>no</td>
+    <td>構文解析（リンティング）ツール。jsコードを静的解析してくれる</td>
+</tr>
+<tr>
+    <td>Prettier</td><td>no</td>
+    <td>フォーマッター。js/ts以外にもhtmlとか色々対応してる。</td>
+</tr>
+</table>
 
 ```sh
+# moduleインストール
 npm install
 ```
 
-### Compile and Hot-Reload for Development
-
+### 実行
 ```sh
 npm run dev
 ```
 
 ### Compile and Minify for Production
-
 ```sh
 npm run build
 ```
