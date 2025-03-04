@@ -14,6 +14,11 @@ npm install body-parser@latest cors@latest pg@latest js-yaml@latest
 npm install --save-dev jest@latest supertest@latest
 ```
 
+# テスト実行
+```shell
+npm test
+```
+
 # 開発環境実行
 ```shell
 npm run start:dev
