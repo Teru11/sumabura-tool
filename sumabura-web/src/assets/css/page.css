@@ -1,0 +1,35 @@
+/* [画面] 大枠 */
+.page-frame {
+    /* 縮小時 横幅固定サイズ */
+    min-width: 400px;  
+    /* 内側 余白 */     
+    padding: 20px;
+    /* 外側 余白（横幅） */
+    margin: 0 25%;
+    /* [Debug用]1pxの黒い実線の枠 */
+    border: 1px solid #000; 
+  }
+  
+  /* 4分割(3/4)サイズの場合 */
+  @media (max-width: 2000px) {
+    .page-frame {
+    /* 外側 余白（横幅） */
+    margin: 0 18%;
+    }
+  }
+  
+  /* 画面より大きいサイズの場合 */
+  @media (max-width: 1800px) {
+    .page-frame {
+    /* 外側 余白（横幅） */
+    margin: 0 10%;
+    }
+  }
+  
+  /* 画面半分サイズの場合(本当は1200px) */
+  @media (max-width: 1300px) {
+    .page-frame {
+    /* 外側 余白（横幅） */
+    margin: 0 0%;
+    }
+  }

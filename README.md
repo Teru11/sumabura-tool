@@ -31,6 +31,9 @@ Bracket Highlighter（タグ・括弧のフォーカス色）
 YAML（ymlファイル）
 Codeium（AI）
 
+## 画面レイアウト設計（miro）
+https://miro.com/app/board/uXjVIWImk9g=/
+
 
 2. [Node.jsインストール](https://nodejs.org/ja)
 3. [PostgreSQLインストール](https://www.postgresql.jp/download)
