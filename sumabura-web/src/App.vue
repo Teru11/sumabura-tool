@@ -1,23 +1,39 @@
 <script setup>
 import { RouterView } from 'vue-router';
-import TitleHeader from './components/cmn_title_header.vue';
-import MenuHeader from './components/cmn_menu_header.vue';
+import HeaderTitle from './components/common/cmn_header_title.vue';
+import HeaderMenu from './components/common/cmn_header_menu.vue';
+import SideLeft from './components/common/cmn_side_left.vue';
+import SideRight from './components/common/cmn_side_right.vue';
 </script>
 
 <template>
   <div>
     <header>
-      <TitleHeader />
-      <MenuHeader />
+      <HeaderTitle />
+      <HeaderMenu />
     </header>
+    <main>
+      <leftContent>
+        <SideLeft />
+      </leftContent>
+      
+      <mainContent>
+        <RouterView />
+      </mainContent>
 
-    <RouterView />
+      <rightContent>
+        <SideRight />
+      </rightContent>
+    </main>
   </div>
 </template>
 
 <style scoped>
 header {
-  line-height: 1.5;
-  max-height: 100vh;
+  /*border: 1px solid #000;    /* [Debug用]1pxの黒い実線の枠 */
+}
+main {
+  border: 1px solid #000;    /* [Debug用]1pxの黒い実線の枠 */
+  display: flex;
 }
 </style>

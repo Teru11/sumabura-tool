@@ -1,74 +1,38 @@
-/* [デフォルト]table */
-table {
-  /* 横幅 */
-  width: 100%;
-  /* テーブルのセル間の境界線を別々に描画する */
-  border-collapse: separate;
-  /* テーブルのセル間のスペースを設定する */
-  border-spacing: 0;
+@charset "utf-8";
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
-/* [デフォルト]table-thead */
-table thead {
-  /* ヘッダーを画面上部に固定 */
-  position: sticky; 
-  /* 要素をページの上端に配置 */
-  top: 0; 
+body {
+  margin: 0;
+  padding: 0;
+  background-color: white;
+  color: black;
 }
 
-/* [デフォルト]table-th */
-table th {
-  /* 寄せ */
-  text-align: left;
-  /* フォントカラー */
-  color: white;
-  /* 背景グラデーション(左：上　右：下) */
-  background: linear-gradient(#191a1a, #f05f16);
-  /* 左線のサイズ・スタイル・色 */
-  border-left: 1px solid white;
-  /* 上線のサイズ・スタイル・色 */
-  border-top: 1px solid white;
-  /* 下線のサイズ・スタイル・色 */
-  border-bottom: 1px solid white;
-  /* 影のサイズ・スタイル・色 */
-  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset;
-  /* テキストが改行されないようにする */
-  white-space: nowrap;
-  /* 要素の外側にはみ出したコンテンツを隠す */
-  overflow: hidden;
-  /* テキストが要素からはみ出た場合に省略記号で表示 */
-  text-overflow: ellipsis;
-  /* パディング(右・上を調整) */
-  padding: 4px 0px 0px 8px;
+/** cssタグ設定（ここから） */
+html {
+	overflow-y:scroll;
 }
-
-/* [デフォルト]table-td　*/
-table td {
-  text-align: center;
-  /* 横線のサイズ・スタイル・色 */
-  border-left: 1px solid #a8b7c5;
-  /* 縦線のサイズ・スタイル・色 */
-  border-bottom: 1px solid #a8b7c5;
-  border-top: none;
-  /* box-shadow: 0px -3px 5px 1px #eee inset; */
+p,li,dt,dl {
+	line-height:1.6;
 }
-
-/* ファイター名[td 上書き] */
-.td-fighterName {
-  /* 寄せ */
-  text-align: left;
-  /* パディング */
-  padding: 2px 8px;
+p {
+	margin:0 0 1em 0;
 }
-
-/* ファイター画像[td 上書き] */
-.td-fighterImg {
-  /* 高さ */
-  height: 100%;
-  /* 横幅 */
-  width: 60px;
-  /* 寄せ */
-  text-align: center;
-  /* パディング(画像の下部分が少し空白があるのでパディングで調整） */
-  padding: 6px 6px 0px 6px;
+li {
+	list-style-type:none;
 }
+a {
+  text-decoration: none;
+}
+img {
+	border:0;
+}
+address {
+	font-style:normal;
+}
+/** cssタグ設定（ここまで） */
