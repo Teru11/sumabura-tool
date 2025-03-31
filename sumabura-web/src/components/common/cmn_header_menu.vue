@@ -1,3 +1,4 @@
+<!--【C】メニューヘッダ -->
 <template>
   <div class="menu">
     <ul>
@@ -12,6 +13,7 @@
 .menu {
   background-color: #c5c5c5;
   box-shadow: 0 0 2px 0 #0000001f, 0 1px 2px 0 #0000003d;
+  border-bottom: 2px solid #000;
 }
 .menu > ul {
   display: flex;

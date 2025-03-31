@@ -1,3 +1,4 @@
+<!--【C】タイトルヘッダ -->
 <template>
   <div class="header-title">
     <router-link to="/" class="header-logo">

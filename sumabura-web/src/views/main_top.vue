@@ -1,15 +1,14 @@
+<!--【M】対戦（トップ画面）画面 -->
+<script setup>
+import Winloss from '../components/form_winloss_table.vue';
+import FighterInfo from '../components/form_fighter_info.vue';
+import MatchHistory from '../components/form_match_history.vue';
+</script>
+
 <template>
-  <div class="about">
-    <h1>This is an about page</h1>
+  <div>
+    <Winloss />
+    <FighterInfo />
+    <MatchHistory />
   </div>
 </template>
-
-<style>
-@media (min-width: 1024px) {
-  .about {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-  }
-}
-</style>

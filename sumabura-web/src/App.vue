@@ -17,9 +17,9 @@ import SideRight from './components/common/cmn_side_right.vue';
         <SideLeft />
       </leftContent>
       
-      <mainContent>
+      <centerContent>
         <RouterView />
-      </mainContent>
+      </centerContent>
 
       <rightContent>
         <SideRight />
@@ -29,11 +29,18 @@ import SideRight from './components/common/cmn_side_right.vue';
 </template>
 
 <style scoped>
-header {
-  /*border: 1px solid #000;    /* [Debug用]1pxの黒い実線の枠 */
-}
 main {
-  border: 1px solid #000;    /* [Debug用]1pxの黒い実線の枠 */
   display: flex;
+  justify-content: space-between;
+}
+centerContent {
+  margin: 20px;
+  margin-right: auto;
+}
+rightContent {
+  background-color: #c5c5c5;
+}
+leftContent {
+  background-color: #c5c5c5;
 }
 </style>
