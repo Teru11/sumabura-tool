@@ -1,7 +1,7 @@
 <!--【C】タイトルヘッダ -->
 <template>
-  <div class="header-title">
-    <router-link to="/" class="header-logo">
+  <div class="title">
+    <router-link to="/" class="title-logo">
       <img src="@/assets/img/sumabura-logo-icon.ico" />
       <p>スマブラツール</p>
     </router-link>
@@ -9,18 +9,18 @@
 </template>
 
 <style scoped>
-.header-title {
+.title {
   background-color: #000000;
 }
-.header-logo {
+.title-logo {
   display: flex;
   align-items: center;
 }
-.header-logo > img {
+.title-logo img {
   width: 40px;
   height: 40px;
 }
-.header-logo > p {
+.title-logo p {
   font-weight: 700;
   color: white;
   margin: 10px;

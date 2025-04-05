@@ -15,22 +15,22 @@
   box-shadow: 0 0 2px 0 #0000001f, 0 1px 2px 0 #0000003d;
   border-bottom: 2px solid #000;
 }
-.menu > ul {
+.menu ul {
   display: flex;
   margin: 0 auto;
   text-align: center;
 }
-.menu > ul > li {
+.menu ul li {
   cursor: pointer;
   flex-grow: 1;
 }
-.menu > ul > li > a {
+.menu ul li a {
   display: block;
   color: #444;
   font-weight: 700;
 }
-.menu > ul > li > a:focus,
-.menu > ul > li > a:hover {
+.menu ul li a:focus,
+.menu ul li a:hover {
   background: #414141;
   color: white;
 }

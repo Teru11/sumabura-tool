@@ -4,7 +4,7 @@ import FighterManager from '../components/form_fighter_manager.vue';
 </script>
 
 <template>
-  <div>
+  <div class="fighter-manager">
     <FighterManager />
   </div>
 </template>

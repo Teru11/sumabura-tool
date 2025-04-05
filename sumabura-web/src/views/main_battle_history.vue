@@ -4,7 +4,7 @@ import BattleHistory from '../components/form_battle_history.vue';
 </script>
 
 <template>
-  <div>
+  <div class="battle-history">
     <BattleHistory />
   </div>
 </template>

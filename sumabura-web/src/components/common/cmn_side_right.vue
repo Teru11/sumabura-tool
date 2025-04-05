@@ -49,10 +49,10 @@
   margin-bottom: 20px;
   background: linear-gradient(to right, #ff7f50, white);
 }
-.right-side-header > p {
+.right-side-header p {
   font-weight: bold;
 }
-.right-side-header > span {
+.right-side-header span {
   margin-left: 10px;
 }
 /** table-css */
@@ -72,11 +72,5 @@
   width: 60px;
   font-size: 20px;
   font-weight: 700;
-}
-.win {
-  color: red;
-}
-.loss {
-  color: blue;
 }
 </style>

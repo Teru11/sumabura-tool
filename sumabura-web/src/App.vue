@@ -8,39 +8,45 @@ import SideRight from './components/common/cmn_side_right.vue';
 
 <template>
   <div>
-    <header>
+    <div class="header">
       <HeaderTitle />
       <HeaderMenu />
-    </header>
-    <main>
-      <leftContent>
+    </div>
+    <div class="main">
+      <div class="left">
         <SideLeft />
-      </leftContent>
+      </div>
       
-      <centerContent>
+      <div class="center">
         <RouterView />
-      </centerContent>
+      </div>
 
-      <rightContent>
+      <div class="right">
         <SideRight />
-      </rightContent>
-    </main>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
-main {
+.main {
   display: flex;
   justify-content: space-between;
 }
-centerContent {
+.center {
+  width: 100%;
   margin: 20px;
-  margin-right: auto;
 }
-rightContent {
+.right {
   background-color: #c5c5c5;
 }
-leftContent {
+.left {
   background-color: #c5c5c5;
+}
+/* 画面半分サイズの場合、サイド非表示 */
+@media (max-width: 1300px) {
+  .left,.right {
+    display: none;
+  }
 }
 </style>

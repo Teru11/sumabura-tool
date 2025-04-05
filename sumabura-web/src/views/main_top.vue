@@ -6,7 +6,7 @@ import MatchHistory from '../components/form_match_history.vue';
 </script>
 
 <template>
-  <div>
+  <div class="main-top">
     <Winloss />
     <FighterInfo />
     <MatchHistory />
