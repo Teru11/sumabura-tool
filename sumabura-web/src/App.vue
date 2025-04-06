@@ -1,9 +1,14 @@
 <script setup>
-import { RouterView } from 'vue-router';
+import { RouterView, useRoute } from 'vue-router';
+import { computed } from 'vue';
 import HeaderTitle from './components/common/cmn_header_title.vue';
 import HeaderMenu from './components/common/cmn_header_menu.vue';
 import SideLeft from './components/common/cmn_side_left.vue';
 import SideRight from './components/common/cmn_side_right.vue';
+
+// 現在のルートを取得し、右サイドの表示有無を設定
+const route = useRoute();   
+const isMainTopRoute = computed(() => route.name === 'main_top');
 </script>
 
 <template>
@@ -21,7 +26,7 @@ import SideRight from './components/common/cmn_side_right.vue';
         <RouterView />
       </div>
 
-      <div class="right">
+      <div class="right" v-if="isMainTopRoute">
         <SideRight />
       </div>
     </div>
