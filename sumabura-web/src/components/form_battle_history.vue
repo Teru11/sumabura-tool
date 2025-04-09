@@ -1,6 +1,6 @@
 <!--【F】ファイター情報フレーム -->
 <template>
-  <div class="from-battke-history">
+  <div class="from-battle-history">
     <div class="fighter-info-select">
       <div class="title">戦績表</div>
       <div class="search">
@@ -159,7 +159,7 @@
 }
 .fighter-info .fighter-info-view {
   margin-left: 30px;
-  width: 300px;
+  width: 200px;
 }
 .fighter-table .th-memo {
   text-align: left;

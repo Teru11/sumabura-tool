@@ -1,10 +1,18 @@
 <!--【F】勝率表フレーム -->
+<script setup>
+import { useRoute } from 'vue-router';
+import { computed } from 'vue';
+// 現在のルートを取得し、略称検索・レート更新の表示有無を設定
+const route = useRoute();   
+const isMainTopRoute = computed(() => route.name === 'main_top');
+</script>
+
 <template>
   <div class="from-win-loss-table">
 
     <div class="fighter-select">
       <div class="title">勝率表</div>
-      <div class="search">
+      <div class="search" v-if="isMainTopRoute">
         <!-- 略称検索 -->
         <form>
           <input type="text" id="nickname" placeholder="略称検索" />
@@ -12,7 +20,7 @@
           <button type="submit" name="cancel">解除</button>
         </form>
       </div>
-      <div class="rate-update">
+      <div class="rate-update" v-if="isMainTopRoute">
         <!-- レート更新 -->
         <form>
           <input type="text" id="rate" />
@@ -38,6 +46,83 @@
           </tr>
         </thead>
         <tbody>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
+          <tr>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td>356</td>
+            <td>220</td>
+            <td>40%</td>
+            <td>1390<br><span>2025/3/10</span></td>
+            <td class="win">+200</td>
+            <td>1000<br><span>2025/3/10</span></td>
+            <td>2000<br><span>2025/3/10</span></td>
+          </tr>
           <tr>
             <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
             <td class="fighter-name">キャプテン・ファルコン</td>
