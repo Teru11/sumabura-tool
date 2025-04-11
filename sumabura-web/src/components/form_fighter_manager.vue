@@ -14,21 +14,25 @@
       <table class="fighter-name-view">
         <tbody>
           <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-image">
+              <img src="@/assets/img/fighter/12.png" />
+            </td>
             <td class="fighter-name">キャプテン・ファルコン</td>
           </tr>
         </tbody>
       </table>
       <form>
-          <button type="submit" name="add">追加</button>
-          <button type="submit" name="delete">削除</button>
+        <button type="submit" name="add">追加</button>
+        <button type="submit" name="delete">削除</button>
       </form>
     </div>
 
     <div class="nickname-form">
-      <span style="margin-right: 20px;">略称名</span>:<span style="margin-left: 20px;">M</span>
+      <span style="margin-right: 20px">略称名</span>
+      <span>:</span>
+      <span style="margin-left: 20px">M</span>
       <form>
-        <input type="text" id="updateNickname" value="M"/>
+        <input type="text" id="updateNickname" value="M" />
         <button type="submit" name="update">略称名変更</button>
       </form>
     </div>

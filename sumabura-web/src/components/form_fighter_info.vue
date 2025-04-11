@@ -18,7 +18,9 @@
         <table>
           <tbody>
             <tr>
-              <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+              <td class="fighter-image">
+                <img src="@/assets/img/fighter/12.png" />
+              </td>
               <td class="fighter-name">キャプテン・ファルコン</td>
             </tr>
           </tbody>
@@ -27,20 +29,22 @@
           <form>
             <div class="data-row">
               <span>勝数</span>
-              <span>487<button type="submit" class="win-btn" name="win">勝利</button></span>
+              <span>
+                487
+                <button type="submit" class="win-btn" name="win">勝利</button>
+              </span>
             </div>
             <div class="data-row">
               <span>負数</span>
-              <span>364<button type="submit" class="loss-btn" name="loss">敗北</button></span>
+              <span>
+                364
+                <button type="submit" class="loss-btn" name="loss">敗北</button>
+              </span>
             </div>
-            <div class="data-row">
-              <span>勝率</span><span>57%</span>
-            </div>
-            <div class="data-row">
-              <span>出現率</span><span>57%</span>
-            </div>
-          </form>		
-        </div> 
+            <div class="data-row"><span>勝率</span><span>57%</span></div>
+            <div class="data-row"><span>出現率</span><span>57%</span></div>
+          </form>
+        </div>
       </div>
 
       <div class="memo">
@@ -53,7 +57,6 @@
         </form>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -113,7 +116,7 @@
   margin-left: 20px;
 }
 .memo .memo-header {
-  display: flex;  
+  display: flex;
   align-items: center;
   justify-content: space-between;
   margin-bottom: 8px;

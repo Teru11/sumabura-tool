@@ -1,23 +1,19 @@
 @charset "utf-8";
 
+/*****************************************/
+/**********  default CSS  ****************/
+/*****************************************/
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
-
 body {
   margin: 0;
   padding: 0;
   background-color: white;
   color: black;
 }
-/** デバッグ用 */
-.debug {
-  border: 1px solid #000;
-}
-
-/** cssタグ設定（ここから） */
 html {
 	overflow-y:scroll;
 }
@@ -39,7 +35,11 @@ img {
 address {
 	font-style:normal;
 }
-/** input bootstap */
+
+/************************************************/
+/**********  input bootstap CSS  ****************/
+/************************************************/
+/** input */
 input {
   margin: 0 0.75rem;
   display: inline-block;
@@ -61,6 +61,7 @@ input:focus {
   outline: none;                                      /* デフォルトのフォーカス枠を非表示 */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* フォーカス時の影 */
 }
+/** button */
 button {
   margin: 0 2px;
   display: inline-block;
@@ -90,6 +91,7 @@ button:active {
   background-color: #004085;  /* アクティブ時の背景色 */
   border-color: #003768;      /* アクティブ時の枠線色 */
 }
+/** textarea */
 textarea {
   display: block;
   width: 100%;        /* 全幅に広げる */
@@ -109,7 +111,28 @@ textarea:focus {
   outline: 0;             /* デフォルトのフォーカス枠を非表示 */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* フォーカス時の影 */
 }
-/** cssタグ設定（ここまで） */
+
+/****************************************/
+/**********  カスタムCSS  ****************/
+/****************************************/
+/** デバッグ用 */
+.debug {
+  border: 1px solid #000;
+}
+
+/** 非表示用 */
+.hidden {
+  display: none;
+}
+
+/** 勝敗フォントカラー */
+.win {
+  color: red;
+}
+
+.loss {
+  color: blue;
+}
 
 /** .fighter-table */
 .fighter-table {
@@ -120,22 +143,22 @@ textarea:focus {
   border-collapse: separate;
   border-spacing: 0;
   border: 1px solid #a8b7c5;
-  border-radius: 0.5rem;       /* 角丸 */
+  border-radius: 0.5rem; /* 角丸 */
 }
 .fighter-table thead {
-  position: sticky;   /* ヘッダーを画面上部に固定 */
-  top: 0;             /* 要素をページの上端に配置 */
+  position: sticky; /* ヘッダーを画面上部に固定 */
+  top: 0;           /* 要素をページの上端に配置 */
 }
 .fighter-table th {
   color: white;
-  background: linear-gradient(#191a1a, #f05f16);  /* 背景グラデーション(左：上　右：下) */
+  background: linear-gradient(#191a1a, #f05f16);        /* 背景グラデーション(左：上　右：下) */
   border-left: 1px solid white;
   border-top: 1px solid white;
   border-bottom: 1px solid white;
-  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset;  /* 影のサイズ・スタイル・色 */
+  box-shadow: 0px 1px 1px rgba(255, 255, 255, 0.3) inset; /* 影のサイズ・スタイル・色 */
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  /* テキストが要素からはみ出た場合に省略記号で表示 */
+  text-overflow: ellipsis; /* テキストが要素からはみ出た場合に省略記号で表示 */
 }
 .fighter-table td {
   border-top: none;
@@ -145,9 +168,9 @@ textarea:focus {
   text-align: center;
   white-space: nowrap;
   overflow: hidden;
-  text-overflow: ellipsis;  /* テキストが要素からはみ出た場合に省略記号で表示 */
+  text-overflow: ellipsis; /* テキストが要素からはみ出た場合に省略記号で表示 */
 }
-/** table-width */
+/** table-hedder */
 .fighter-table .th-fighter {
   text-align: left;
   width: 400px;
@@ -160,7 +183,7 @@ textarea:focus {
 /** table-data */
 .fighter-table .fighter-image {
   width: 60px;
-  padding: 6px 6px 0px 6px;  /* 画像の下部分が少し空白があるので調整 */
+  padding: 6px 6px 0px 6px; /* 画像の下部分が少し空白があるので調整 */
 }
 .fighter-table .fighter-image img {
   width: 60px;
@@ -174,10 +197,4 @@ textarea:focus {
 .fighter-table span {
   font-size: 12px;
   color: rgb(168, 168, 168);
-}
-.win {
-  color: red;
-}
-.loss {
-  color: blue;
 }

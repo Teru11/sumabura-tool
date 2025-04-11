@@ -18,7 +18,9 @@
       <table class="fighter-name-view">
         <tbody>
           <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-image">
+              <img src="@/assets/img/fighter/12.png" />
+            </td>
             <td class="fighter-name">キャプテン・ファルコン</td>
           </tr>
         </tbody>
@@ -47,88 +49,7 @@
         </thead>
         <tbody>
           <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png" /></td>
             <td class="fighter-name">キャプテン・ファルコン</td>
             <td>54</td>
             <td>36</td>
@@ -171,9 +92,9 @@
   font-size: 12px;
   padding-left: 8px;
   padding-right: 8px;
-  white-space: normal; /* 自動で折り返し */
-  overflow: visible;   /* 溢れた部分を表示 */
-  text-overflow: clip; /* ellipsis効果を無効に */
+  white-space: normal;  /* 自動で折り返し */
+  overflow: visible;    /* 溢れた部分を表示 */
+  text-overflow: clip;  /* ellipsis効果を無効に */
 }
 /** table */
 .table-scroll {

@@ -8,7 +8,7 @@ import MatchHistory from '../components/form_match_history.vue';
 <template>
   <div class="main-top">
     <Winloss />
-    <FighterInfo />
+    <FighterInfo class="hidden"/>
     <MatchHistory />
   </div>
 </template>

@@ -1,15 +1,14 @@
 <!--【F】勝率表フレーム -->
 <script setup>
-import { useRoute } from 'vue-router';
-import { computed } from 'vue';
+import { useRoute } from "vue-router";
+import { computed } from "vue";
 // 現在のルートを取得し、略称検索・レート更新の表示有無を設定
-const route = useRoute();   
-const isMainTopRoute = computed(() => route.name === 'main_top');
+const route = useRoute();
+const isMainTopRoute = computed(() => route.name === "main_top");
 </script>
 
 <template>
   <div class="from-win-loss-table">
-
     <div class="fighter-select">
       <div class="title">勝率表</div>
       <div class="search" v-if="isMainTopRoute">
@@ -47,92 +46,15 @@ const isMainTopRoute = computed(() => route.name === 'main_top');
         </thead>
         <tbody>
           <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
+            <td class="fighter-image"><img src="@/assets/img/fighter/12.png" /></td>
             <td class="fighter-name">キャプテン・ファルコン</td>
             <td>356</td>
             <td>220</td>
             <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
+            <td>1390<br /><span>2025/3/10</span></td>
             <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
-          </tr>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png"></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br><span>2025/3/10</span></td>
-            <td>2000<br><span>2025/3/10</span></td>
+            <td>1000<br /><span>2025/3/10</span></td>
+            <td>2000<br /><span>2025/3/10</span></td>
           </tr>
         </tbody>
       </table>
@@ -160,6 +82,11 @@ const isMainTopRoute = computed(() => route.name === 'main_top');
   display: block;
   overflow-y: auto;
   max-height: 240px;
+}
+/** scrollしない（親がno-scrollクラスを持っている場合） */
+.no-scroll .table-scroll {
+  overflow-y: visible;
+  max-height: none;
 }
 /** input */
 #nickname {

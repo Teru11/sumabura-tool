@@ -11,22 +11,10 @@
       <table class="side-battle-history">
         <tbody>
           <tr>
-            <td><img src="@/assets/img/fighter/12.png" class="fighter-image"></td>
-            <td><img src="@/assets/img/vs.png" class="vs-image"></td>
-            <td><img src="@/assets/img/fighter/1.png" class="fighter-image"></td>
+            <td><img src="@/assets/img/fighter/12.png" class="fighter-image" /></td>
+            <td><img src="@/assets/img/vs.png" class="vs-image" /></td>
+            <td><img src="@/assets/img/fighter/1.png" class="fighter-image" /></td>
             <td><span class="result win">2連勝</span></td>
-          </tr>
-          <tr>
-            <td><img src="@/assets/img/fighter/12.png" class="fighter-image"></td>
-            <td><img src="@/assets/img/vs.png" class="vs-image"></td>
-            <td><img src="@/assets/img/fighter/2.png" class="fighter-image"></td>
-            <td><span class="result win">1連勝</span></td>
-          </tr>
-          <tr>
-            <td><img src="@/assets/img/fighter/12.png" class="fighter-image"></td>
-            <td><img src="@/assets/img/vs.png" class="vs-image"></td>
-            <td><img src="@/assets/img/fighter/60.png" class="fighter-image"></td>
-            <td><span class="result loss">1連敗</span></td>
           </tr>
         </tbody>
       </table>
