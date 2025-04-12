@@ -2,7 +2,7 @@
 <template>
   <div class="title">
     <router-link to="/" class="title-logo">
-      <img src="@/assets/img/sumabura-logo-icon.ico" />
+      <img src="@/assets/img/sumabura-logo-icon.png" />
       <p>スマブラツール</p>
     </router-link>
   </div>
