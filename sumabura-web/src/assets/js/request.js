@@ -1,30 +1,26 @@
 import axios from 'axios';
 
 /** バックエンドURL */
-const backend_url = "http://localhost:3000/sumabura/";
+const baseUrl = "http://localhost:3000/sumabura";
 
-/** 画面初期表示リクエストデータ取得 */ 
-export async function InitDisplaytRequestData(path) {
+/** GET送信（しゅ徳処理）  */
+export async function get(url) {
   try {
-    const response = await axios.get(backend_url + `${path}`);
-    // 画面のデベロッパーツールの[console]のArrayに出力
-    console.log(response.data);
+    const response = await axios.get(`${baseUrl}/${url}`);
     return response.data;
   } catch (error) {
-    console.error('リクエスト[GET]例外エラー:', error);
+    console.error(`[GET] ${url} でエラー`, error)
     return null;
   }
 }
 
-/** リクエスト・データ取得 */ 
-export async function requestPostSearchData(url, requestData) {
+/** POST送信（更新処理） */
+export async function post(url, jsonData) {
   try {
-    const response = await axios.post(backend_url + `${url}`, requestData);
-    // 画面のデベロッパーツールの[console]のArrayに出力
-    console.log(response.data);
+    const response = await axios.post(`${baseUrl}/${url}`, jsonData);
     return response.data;
   } catch (error) {
-    console.error('リクエスト[POST]例外エラー:', error);
+    console.error(`[POST] ${url} でエラー`, error)
     return null;
   }
 }

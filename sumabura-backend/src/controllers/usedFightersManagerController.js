@@ -1,4 +1,4 @@
-import * as service from '../services/usedFightersManagerService';
+import * as service from '../services/usedFightersManagerService.js';
 
 /** 勝率表取得 */
 export async function handleGetUsedFighters(req, res) {

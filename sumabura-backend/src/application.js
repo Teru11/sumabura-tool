@@ -1,8 +1,8 @@
 import express from 'express';
 import bodyParser from 'body-parser';
 import cors from 'cors';
-import config from './utils/readConfig';
-import apiRoutes from './routes/apiRoutes';
+import config from './utils/readConfig.js';
+import apiRoutes from './routes/apiRoutes.js';
 
 const app = express();
 
@@ -30,7 +30,7 @@ app.use((err, req, res, next) => {
 // 通常実行時はサーバー起動
 if (process.env.NODE_ENV !== 'test') {
   app.listen(PORT, () => {
-      console.log(`Server is running on port ${PORT}`);
+    console.log(`Server is running on port ${PORT}`);
   });
 }
 

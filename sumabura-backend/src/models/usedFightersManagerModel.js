@@ -1,4 +1,3 @@
-
 /** プレイヤー管理テーブルのModel */
 export default class UsedFighter {
 

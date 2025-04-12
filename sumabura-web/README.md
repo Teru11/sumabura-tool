@@ -39,6 +39,8 @@ Project name：`sumabura-web`
 ```sh
 # moduleインストール
 npm install
+# backend連携用
+npm install axios
 ```
 
 ### 実行

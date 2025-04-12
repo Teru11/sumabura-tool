@@ -1,4 +1,4 @@
-import * as service from '../services/fighterMasterService';
+import * as service from '../services/fighterMasterService.js';
 
 /** ファイター全取得 */
 export async function handleGetAllFighters(req, res) {

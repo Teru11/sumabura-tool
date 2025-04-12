@@ -1,7 +1,7 @@
 import express from 'express';
-import { handleGetAllFighters } from '../controllers/fighterMasterController'
-import { handleGetUsedFighters } from '../controllers/usedFightersManagerController'
-import { handleGetWinLossFighter } from '../controllers/winLossManagerController'
+import { handleGetAllFighters } from '../controllers/fighterMasterController.js'
+import { handleGetUsedFighters } from '../controllers/usedFightersManagerController.js'
+import { handleGetWinLossFighter } from '../controllers/winLossManagerController.js'
 
 const router = express.Router();
 

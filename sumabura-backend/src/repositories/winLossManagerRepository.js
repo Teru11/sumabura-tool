@@ -1,5 +1,5 @@
-import pool from '../utils/db';
-import WinLoss from '../models/winLossManagerModel';
+import pool from '../utils/db.js';
+import WinLoss from '../models/winLossManagerModel.js';
 
 /** 相手情報取得 */
 export async function getWinLossFighter(useid, fid) {

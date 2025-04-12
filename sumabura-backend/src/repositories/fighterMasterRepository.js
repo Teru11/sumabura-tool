@@ -1,5 +1,5 @@
-import pool from '../utils/db';
-import Fighter from '../models/fighterMasterModel';
+import pool from '../utils/db.js';
+import Fighter from '../models/fighterMasterModel.js';
 
 /** ファイター全リストを取得 */
 export async function getAllFighters() {

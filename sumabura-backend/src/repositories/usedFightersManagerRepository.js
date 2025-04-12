@@ -1,5 +1,5 @@
-import pool from '../utils/db';
-import UsedFighter from '../models/usedFightersManagerModel';
+import pool from '../utils/db.js';
+import UsedFighter from '../models/usedFightersManagerModel.js';
 
 /** 勝率表取得 */
 export async function getUsedFighters(useid) {

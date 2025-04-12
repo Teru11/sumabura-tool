@@ -1,4 +1,4 @@
-import * as service from '../services/winLossManagerService';
+import * as service from '../services/winLossManagerService.js';
 
 /** 相手情報取得 */
 export async function handleGetWinLossFighter(req, res) {
