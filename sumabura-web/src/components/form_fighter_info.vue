@@ -2,8 +2,9 @@
 <script setup>
 import { useFighterInfo } from '@/composables/useFighterInfo.js';
 import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
-const props = defineProps({useid: Number});
-console.log('戦績フォーム:' + props.useid);
+import { toRef } from 'vue';
+const props = defineProps({ useid: String });
+const useidRef = toRef(props, 'useid');
 const {
   nickname,
   fighterInfo,
@@ -12,7 +13,7 @@ const {
   updateMemo,
   message,
   fighterMemo
-} = useFighterInfo(props.useid);
+} = useFighterInfo(useidRef);
 </script>
 
 <template>

@@ -1,11 +1,11 @@
-import { ref, onMounted } from 'vue';
+import { ref, watch } from 'vue';
 import { getMatchHistory } from '@/assets/js/request.js';
 
-export function useMatchHistory(useid) {
+export function useMatchHistory(useidRef) {
   /** model */
   const matchHistoryTable = ref([]);
   /** 初期化 */
-  const initialize = async () => {
+  const initialize = async (useid) => {
     const resultTable = await getMatchHistory(useid);
     const reversed = resultTable.slice().reverse(); // 新しい順で処理
     const tempList = []; // 最終 push 用
@@ -45,8 +45,10 @@ export function useMatchHistory(useid) {
     // 最終結果を元の表示順（古い順）に戻して反映
     matchHistoryTable.value = tempList.reverse();
   }
-  // 初期処理
-  onMounted(() => initialize());
+  // useidの変更を監視してinitializeを呼び出す
+  watch(useidRef, (useid) => {
+    initialize(useid);
+  }, { immediate: true });
   // 返却
   return { 
     matchHistoryTable

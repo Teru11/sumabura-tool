@@ -28,7 +28,7 @@ const {
           <button type="submit" name="cancel">解除</button>
         </form>
       </div>
-      <div class="rate-update" v-if="isMainTopRoute">
+      <div class="rate-update" v-if="isMainTopRoute && useid">
         <!-- レート更新 -->
         <form @submit.prevent="rateSaveUpdate">
           <input type="text" id="rate" v-model="updateRate" />

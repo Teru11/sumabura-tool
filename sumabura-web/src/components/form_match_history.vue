@@ -1,11 +1,12 @@
 <!--【F】対戦記録フォーム -->
 <script setup>
 import { useMatchHistory } from '@/composables/useMatchHistory.js';
-const props = defineProps({useid: Number});
-console.log('対戦記録フォーム:' + props.useid);
+import { toRef } from 'vue';
+const props = defineProps({ useid: String });
+const useidRef = toRef(props, 'useid');
 const {
   matchHistoryTable
-} = useMatchHistory(props.useid);
+} = useMatchHistory(useidRef);
 </script>
 
 <template>
