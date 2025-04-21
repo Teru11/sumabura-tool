@@ -1,10 +1,19 @@
 <!--【F】勝率表フレーム -->
 <script setup>
-import { useRoute } from "vue-router";
-import { computed } from "vue";
-// 現在のルートを取得し、略称検索・レート更新の表示有無を設定
-const route = useRoute();
-const isMainTopRoute = computed(() => route.name === "main_top");
+import { useWinlossTable } from '@/composables/useWinlossTable.js';
+import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
+/** emit */
+const emit = defineEmits(['selected-useid']);
+const {
+  useid,
+  nickname,
+  winlossTable,
+  updateRate,
+  isMainTopRoute,
+  search,
+  rateSaveUpdate,
+  rateDeff
+} = useWinlossTable(emit);
 </script>
 
 <template>
@@ -13,16 +22,16 @@ const isMainTopRoute = computed(() => route.name === "main_top");
       <div class="title">勝率表</div>
       <div class="search" v-if="isMainTopRoute">
         <!-- 略称検索 -->
-        <form>
-          <input type="text" id="nickname" placeholder="略称検索" />
+        <form @submit.prevent="search">
+          <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
           <button type="submit" name="search">検索</button>
           <button type="submit" name="cancel">解除</button>
         </form>
       </div>
       <div class="rate-update" v-if="isMainTopRoute">
         <!-- レート更新 -->
-        <form>
-          <input type="text" id="rate" />
+        <form @submit.prevent="rateSaveUpdate">
+          <input type="text" id="rate" v-model="updateRate" />
           <button type="submit" name="update">更新</button>
           <button type="submit" name="save">保存</button>
         </form>
@@ -45,16 +54,20 @@ const isMainTopRoute = computed(() => route.name === "main_top");
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png" /></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>356</td>
-            <td>220</td>
-            <td>40%</td>
-            <td>1390<br /><span>2025/3/10</span></td>
-            <td class="win">+200</td>
-            <td>1000<br /><span>2025/3/10</span></td>
-            <td>2000<br /><span>2025/3/10</span></td>
+          <tr v-for="item in winlossTable" :key="item.useid">
+            <td class="fighter-image">
+              <img v-if="item.useid" :src="getFighterImage(item.useid)" />
+            </td>
+            <td class="fighter-name">{{ item.fname }}</td>
+            <td>{{ item.win_cnt }}</td>
+            <td>{{ item.loss_cnt }}</td>
+            <td>{{ calcWinRate(item.win_cnt, item.loss_cnt) }}%</td>
+            <td>{{ item.current_rate }}<br /><span>{{ item.current_rate_date }}</span></td>
+            <td :class="rateDeff(item.current_rate, item.history_rate1).class">
+              {{ rateDeff(item.current_rate, item.history_rate1).value }}
+            </td>
+            <td>{{ item.history_rate1 }}<br /><span>{{ item.history_rate1_date }}</span></td>
+            <td>{{ item.history_rate2 }}<br /><span>{{ item.history_rate2_date }}</span></td>
           </tr>
         </tbody>
       </table>

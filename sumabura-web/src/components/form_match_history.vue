@@ -1,19 +1,30 @@
 <!--【F】対戦記録フォーム -->
+<script setup>
+import { useMatchHistory } from '@/composables/useMatchHistory.js';
+const props = defineProps({useid: Number});
+console.log('対戦記録フォーム:' + props.useid);
+const {
+  matchHistoryTable
+} = useMatchHistory(props.useid);
+</script>
+
 <template>
-  <div class="form-match-history">
+  <div class="form-match-history" v-if="matchHistoryTable">
     <div class="match-history-table">
       <table class="table-scroll">
         <tbody>
-          <tr>
-            <td class="date">2025/3/10 23:01</td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td class="vs">VS</td>
-            <td class="fighter-name">ルフレ</td>
-            <td class="result win">勝利</td>
-            <td class="result win">２連勝</td>
-          </tr>
-          <tr>
-            <td colspan="6"><div class="dateline"><!-- 日付変更線 --></div></td>
+          <tr v-for="row in matchHistoryTable" :key="row.key">
+            <template v-if="row.type === 'dateline'">
+              <td colspan="6"><div class="dateline"><!-- 日付変更線 --></div></td>
+            </template>
+            <template v-else>
+              <td class="date">{{ row.history_date }}</td>
+              <td class="fighter-name">{{ row.use_name }}</td>
+              <td class="vs">VS</td>
+              <td class="fighter-name">{{ row.enemy_name }}</td>
+              <td :class="['result', row.resultClass]">{{ row.resultStr }}</td>
+              <td :class="['result', row.resultClass]">{{ row.streakStr }}</td>
+            </template>
           </tr>
         </tbody>
       </table>

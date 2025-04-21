@@ -1,0 +1,20 @@
+[
+    {
+        "history_date": "2024-04-20 12:24",
+        "use_name": "キャプテン・ファルコン",
+        "enemy_name": "マリオ",
+        "result": "win"
+    },
+    {
+        "history_date": "2024-04-20 12:24",
+        "use_name": "キャプテン・ファルコン",
+        "enemy_name": "キャプテン・ファルコン",
+        "result": "win"
+    },
+    {
+        "history_date": "2024-04-20 12:24",
+        "use_name": "キャプテン・ファルコン",
+        "enemy_name": "ルフレ",
+        "result": "loss"
+    }
+]

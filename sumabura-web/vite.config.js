@@ -16,4 +16,8 @@ export default defineConfig({
       '@': fileURLToPath(new URL('./src', import.meta.url))
     },
   },
+  define: {
+    // Mockを使用する場合、true。普段はfalse
+    __USE_MOCK__: true,
+  }
 })

@@ -1,0 +1,62 @@
+[
+    {
+        "useid": 12,
+        "fname": "キャプテン・ファルコン",
+        "win_cnt": 466,
+        "loss_cnt": 345,
+        "current_rate": 1412,
+        "current_rate_date": "2024-04-20",
+        "history_rate1": 1312,
+        "history_rate1_date": "2024-04-19",
+        "history_rate2": 1360,
+        "history_rate2_date": "2024-04-18"
+    },
+    {
+        "useid": 7,
+        "fname": "カービィ",
+        "win_cnt": 521,
+        "loss_cnt": 464,
+        "current_rate": 1102,
+        "current_rate_date": "2024-04-20",
+        "history_rate1": 1243,
+        "history_rate1_date": "2024-04-19",
+        "history_rate2": 1230,
+        "history_rate2_date": "2024-04-18"
+    },
+    {
+        "useid": 19,
+        "fname": "ゼルダ",
+        "win_cnt": 0,
+        "loss_cnt": 0,
+        "current_rate": 1102,
+        "current_rate_date": "2024-04-20",
+        "history_rate1": 1102,
+        "history_rate1_date": "2024-04-19",
+        "history_rate2": 1230,
+        "history_rate2_date": "2024-04-18"
+    },
+    {
+        "useid": 86,
+        "fname": "ソラ",
+        "win_cnt": 12,
+        "loss_cnt": 3,
+        "current_rate": 1102,
+        "current_rate_date": "2024-04-20",
+        "history_rate1": 1102,
+        "history_rate1_date": "2024-04-19"
+    },
+    {
+        "useid": 65,
+        "fname": "クラウド",
+        "win_cnt": 35,
+        "loss_cnt": 60,
+        "current_rate": 1102,
+        "current_rate_date": "2024-04-20"
+    },
+    {
+        "useid": 57,
+        "fname": "パルテナ",
+        "win_cnt": 0,
+        "loss_cnt": 0
+    }
+]

@@ -1,59 +1,75 @@
 <!--【F】戦績フォーム -->
+<script setup>
+import { useFighterInfo } from '@/composables/useFighterInfo.js';
+import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
+const props = defineProps({useid: Number});
+console.log('戦績フォーム:' + props.useid);
+const {
+  nickname,
+  fighterInfo,
+  search,
+  updateResult,
+  updateMemo,
+  message,
+  fighterMemo
+} = useFighterInfo(props.useid);
+</script>
+
 <template>
   <div class="from-fighter-info">
     <div class="fighter-info-select">
       <div class="title">相手情報</div>
       <div class="search">
         <!-- 略称検索 -->
-        <form>
-          <input type="text" id="nickname" placeholder="略称検索" />
+        <form @submit.prevent="search">
+          <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
           <button type="submit" name="search">検索</button>
         </form>
       </div>
-      <div class="message">*****のメモを更新しました。</div>
+      <div class="message">{{ message }}</div>
     </div>
 
-    <div class="fighter-info">
+    <div class="fighter-info" v-if="fighterInfo">
       <div class="fighter-table">
-        <table>
+        <table class="fighter-name-view">
           <tbody>
             <tr>
               <td class="fighter-image">
-                <img src="@/assets/img/fighter/12.png" />
+                <img :src="getFighterImage(fighterInfo.fid)" />
               </td>
-              <td class="fighter-name">キャプテン・ファルコン</td>
+              <td class="fighter-name">{{ fighterInfo.fname }}</td>
             </tr>
           </tbody>
         </table>
         <div class="winloss-table">
-          <form>
+          <form @submit.prevent="updateResult">
             <div class="data-row">
               <span>勝数</span>
-              <span>
-                487
-                <button type="submit" class="win-btn" name="win">勝利</button>
-              </span>
+              <span>{{ fighterInfo.win_cnt }}<button type="submit" class="win-btn" name="win">勝利</button></span>
             </div>
             <div class="data-row">
               <span>負数</span>
-              <span>
-                364
-                <button type="submit" class="loss-btn" name="loss">敗北</button>
-              </span>
+              <span>{{ fighterInfo.loss_cnt }}<button type="submit" class="loss-btn" name="loss">敗北</button></span>
             </div>
-            <div class="data-row"><span>勝率</span><span>57%</span></div>
-            <div class="data-row"><span>出現率</span><span>57%</span></div>
+            <div class="data-row">
+              <span>勝率</span>
+              <span>{{ calcWinRate(fighterInfo.win_cnt, fighterInfo.loss_cnt) }}%</span>
+            </div>
+            <div class="data-row">
+              <span>出現率</span>
+              <span>{{ fighterInfo.encount }}%</span>
+            </div>
           </form>
         </div>
       </div>
 
       <div class="memo">
-        <form>
+        <form @submit.prevent="updateMemo">
           <div class="memo-header">
             <div>ファイターメモ</div>
             <button type="submit" name="update">更新</button>
           </div>
-          <textarea></textarea>
+          <textarea v-model="fighterMemo"></textarea>
         </form>
       </div>
     </div>
@@ -74,6 +90,9 @@
 }
 .fighter-info {
   display: flex;
+}
+.fighter-name-view {
+  width: 330px;
 }
 .winloss-table {
   margin-top: 10px;
