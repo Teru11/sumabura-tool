@@ -41,6 +41,8 @@ Project name：`sumabura-web`
 npm install
 # backend連携用
 npm install axios
+# イベントバス（状態設定）インストール
+npm install mitt
 ```
 
 ### 実行

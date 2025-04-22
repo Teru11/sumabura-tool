@@ -2,8 +2,7 @@
 <script setup>
 import { useWinlossTable } from '@/composables/useWinlossTable.js';
 import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
-/** emit */
-const emit = defineEmits(['selected-useid']);
+const emit = defineEmits(['selected-useid']); // emit
 const {
   useid,
   nickname,
@@ -54,20 +53,20 @@ const {
           </tr>
         </thead>
         <tbody>
-          <tr v-for="item in winlossTable" :key="item.useid">
+          <tr v-for="row in winlossTable" :key="row.useid">
             <td class="fighter-image">
-              <img v-if="item.useid" :src="getFighterImage(item.useid)" />
+              <img v-if="row.useid" :src="getFighterImage(row.useid)" />
             </td>
-            <td class="fighter-name">{{ item.fname }}</td>
-            <td>{{ item.win_cnt }}</td>
-            <td>{{ item.loss_cnt }}</td>
-            <td>{{ calcWinRate(item.win_cnt, item.loss_cnt) }}%</td>
-            <td>{{ item.current_rate }}<br /><span>{{ item.current_rate_date }}</span></td>
-            <td :class="rateDeff(item.current_rate, item.history_rate1).class">
-              {{ rateDeff(item.current_rate, item.history_rate1).value }}
+            <td class="fighter-name">{{ row.fname }}</td>
+            <td>{{ row.win_cnt }}</td>
+            <td>{{ row.loss_cnt }}</td>
+            <td>{{ calcWinRate(row.win_cnt, row.loss_cnt) }}%</td>
+            <td>{{ row.current_rate }}<br /><span>{{ row.current_rate_date }}</span></td>
+            <td :class="rateDeff(row.current_rate, row.history_rate1).class">
+              {{ rateDeff(row.current_rate, row.history_rate1).value }}
             </td>
-            <td>{{ item.history_rate1 }}<br /><span>{{ item.history_rate1_date }}</span></td>
-            <td>{{ item.history_rate2 }}<br /><span>{{ item.history_rate2_date }}</span></td>
+            <td>{{ row.history_rate1 }}<br /><span>{{ row.history_rate1_date }}</span></td>
+            <td>{{ row.history_rate2 }}<br /><span>{{ row.history_rate2_date }}</span></td>
           </tr>
         </tbody>
       </table>

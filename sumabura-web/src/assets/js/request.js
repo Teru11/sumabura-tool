@@ -47,7 +47,12 @@ export async function getWinLossTable(nickname) {
 /** 本日の対戦記録を取得 */
 export async function getTodayBattleHistory(useid) {
   // Mock
-  if (__USE_MOCK__) return todayBattleHistoryMock;
+  if (__USE_MOCK__) { 
+    // 乱数で変更
+    const randomCount = Math.floor(Math.random() * 8) + 3; // 3〜10件
+    const shuffled = [...todayBattleHistoryMock].sort(() => 0.5 - Math.random());
+    return shuffled.slice(0, randomCount);
+  }
   // API連携
   const data = await get(`history/battle/today/${useid}`);
   return data || [];

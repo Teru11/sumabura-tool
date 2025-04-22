@@ -1,5 +1,6 @@
 import { ref } from 'vue';
 import { getFighterInfo, updateFighterWinLoss, updateFighterMemo } from '@/assets/js/request.js';
+import { emitter } from '@/assets/js/eventBus.js';
 
 export function useFighterInfo(useid) {
   /** model */
@@ -27,6 +28,8 @@ export function useFighterInfo(useid) {
     } else if (action === 'loss') {
       await updateFighterWinLoss(useid, fighterInfo.value.fid, -1);
     }
+    // 本日戦績をリフレッシュ
+    emitter.emit('refresh-today-battle-data');
     message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
   }
   /** メモ更新 */

@@ -1,20 +1,30 @@
 <!--【C】対戦記録フレーム（右サイド） -->
+<script setup>
+import { useSideRight } from '@/composables/useSideRight.js';
+import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
+const {
+  win_cnt,
+  loss_cnt,
+  todayBattleHistoryTable
+} = useSideRight();
+</script>
+
 <template>
   <div class="right-side">
     <div class="right-side-inner">
       <div class="right-side-header">
         <p>本日の成績</p>
-        <span>勝敗:12</span>
-        <span>負数:5</span>
-        <span>勝率:100%</span>
+        <span>勝敗:{{ win_cnt }}</span>
+        <span>負数:{{ loss_cnt }}</span>
+        <span>勝率:{{ calcWinRate(win_cnt, loss_cnt) }}%</span>
       </div>
       <table class="side-battle-history">
         <tbody>
-          <tr>
-            <td><img src="@/assets/img/fighter/12.png" class="fighter-image" /></td>
-            <td><img src="@/assets/img/vs.png" class="vs-image" /></td>
-            <td><img src="@/assets/img/fighter/1.png" class="fighter-image" /></td>
-            <td><span class="result win">2連勝</span></td>
+          <tr v-for="row in todayBattleHistoryTable" :key="row.history_date">
+            <td><img v-if="row.useid" :src="getFighterImage(row.useid)" /></td>
+            <td><img v-if="row.useid && row.fid" src="@/assets/img/vs.png" /></td>
+            <td><img v-if="row.fid" :src="getFighterImage(row.fid)" /></td>
+            <td><span :class="['result', row.resultClass]">{{ row.streakStr }}</span></td>
           </tr>
         </tbody>
       </table>
@@ -47,13 +57,9 @@
 .side-battle-history {
   text-align: center;
 }
-.vs-image {
+.side-battle-history img {
   width: 60px;
   width: 60px;
-}
-.fighter-image {
-  width: 60px;
-  height: 60px;
 }
 .result {
   margin: 0 20px;
