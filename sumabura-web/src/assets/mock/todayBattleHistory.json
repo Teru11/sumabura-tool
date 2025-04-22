@@ -58,5 +58,23 @@
         "useid": 12,
         "fid": 20,
         "result": "loss"
+    },
+    {
+        "history_date": "2024-04-20 12:24",
+        "useid": 12,
+        "fid": 12,
+        "result": "win"
+    },
+    {
+        "history_date": "2024-04-20 12:24",
+        "useid": 12,
+        "fid": 20,
+        "result": "loss"
+    },
+    {
+        "history_date": "2024-04-20 12:24",
+        "useid": 12,
+        "fid": 20,
+        "result": "loss"
     }
 ]

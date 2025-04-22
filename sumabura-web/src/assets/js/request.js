@@ -27,11 +27,11 @@ export async function getFighterInfo(useid, nickname) {
   return await get(`info/get/${useid}/${nickname}`);
 }
 /** 相手情報のリストを取得 */
-export async function getFighterInfoList(nickname) {
+export async function getFighterInfoList(useid) {
   // Mock
   if (__USE_MOCK__) return fighterInfoListMock;
   // API連携
-  const data = await get(`info/list/${nickname}`);
+  const data = await get(`info/list/${useid}`);
   return data || [];
 }
 /** 勝率表を取得 */
@@ -49,9 +49,10 @@ export async function getTodayBattleHistory(useid) {
   // Mock
   if (__USE_MOCK__) { 
     // 乱数で変更
-    const randomCount = Math.floor(Math.random() * 8) + 3; // 3〜10件
+    const randomCount = Math.floor(Math.random() * 11); // 1〜11件
     const shuffled = [...todayBattleHistoryMock].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, randomCount);
+    // return todayBattleHistoryMock;
   }
   // API連携
   const data = await get(`history/battle/today/${useid}`);

@@ -1,12 +1,24 @@
 <!--【F】ファイター情報フレーム -->
+<script setup>
+import { useBattleHistory } from '@/composables/useBattleHistory.js';
+import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
+const {
+  useid,
+  nickname,
+  winlossTable,
+  fighterTable,
+  search
+} = useBattleHistory();
+</script>
+
 <template>
   <div class="from-battle-history">
     <div class="fighter-info-select">
       <div class="title">戦績表</div>
       <div class="search">
         <!-- 略称検索 -->
-        <form>
-          <input type="text" id="nickname" placeholder="略称検索" />
+        <form @submit.prevent="search">
+          <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
           <button type="submit" name="search">検索</button>
           <button type="submit" name="cancel">解除</button>
         </form>
@@ -14,22 +26,22 @@
     </div>
 
     <!-- 検索結果 -->
-    <div class="fighter-table fighter-info">
+    <div class="fighter-table fighter-info" v-if="winlossTable.length > 0">
       <table class="fighter-name-view">
         <tbody>
           <tr>
             <td class="fighter-image">
-              <img src="@/assets/img/fighter/12.png" />
+              <img :src="getFighterImage(winlossTable[0].useid)" />
             </td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
+            <td class="fighter-name">{{ winlossTable[0].fname }}</td>
           </tr>
         </tbody>
       </table>
       <table class="fighter-info-view">
         <tbody>
-          <tr><td>勝数</td><td>487</td></tr>
-          <tr><td>負数</td><td>364</td></tr>
-          <tr><td>出現率</td><td>57%</td></tr>
+          <tr><td>勝数</td><td>{{ winlossTable[0].win_cnt }}</td></tr>
+          <tr><td>負数</td><td>{{ winlossTable[0].loss_cnt }}</td></tr>
+          <tr><td>勝率</td><td>{{ calcWinRate(winlossTable[0].win_cnt, winlossTable[0].loss_cnt) }}%</td></tr>
         </tbody>
       </table>
     </div>
@@ -48,14 +60,14 @@
           </tr>
         </thead>
         <tbody>
-          <tr>
-            <td class="fighter-image"><img src="@/assets/img/fighter/12.png" /></td>
-            <td class="fighter-name">キャプテン・ファルコン</td>
-            <td>54</td>
-            <td>36</td>
-            <td>18</td>
-            <td>67%</td>
-            <td class="memo">メモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモメモ</td>
+          <tr v-for="row in fighterTable" :key="row.fid">
+            <td class="fighter-image"><img v-if="row.fid" :src="getFighterImage(row.fid)" /></td>
+            <td class="fighter-name">{{ row.fname }}</td>
+            <td>{{ row.win_cnt + row.loss_cnt }}</td>
+            <td>{{ row.win_cnt }}</td>
+            <td>{{ row.loss_cnt }}</td>
+            <td>{{ calcWinRate(row.win_cnt, row.loss_cnt) }}%</td>
+            <td class="memo">{{ row.memo }}</td>
           </tr>
         </tbody>
       </table>
