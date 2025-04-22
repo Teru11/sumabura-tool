@@ -5,6 +5,5 @@ export function calcWinRate(win_cnt, loss_cnt) {
 }
 /** ファイター画像取得 */
 export function getFighterImage(id) {
-    console.log(id);
     return `./fighter/${id}.png`;
 };

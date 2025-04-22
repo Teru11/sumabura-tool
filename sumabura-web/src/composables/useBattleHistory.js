@@ -1,7 +1,8 @@
 import { ref, onMounted } from 'vue';
-import { getWinLossTable, getFighterInfoList } from '@/assets/js/request.js';
+import { getWinLossTable, getEnemyFighterList } from '@/assets/js/request.js';
 
-export function useBattleHistory(emit) {
+export function useBattleHistory() {
+  /** model */
   const useid = ref('');
   const nickname = ref('');
   const winlossTable = ref([]);
@@ -11,17 +12,20 @@ export function useBattleHistory(emit) {
     useid.value = '';
     nickname.value = '';
     winlossTable.value = [];
-    fighterTable.value = await getFighterInfoList();
+    // 戦績表取得API連携
+    fighterTable.value = await getEnemyFighterList();
   }
-  /** 略称検索・解除 */
-  const search = async (event) => {
+  /** [event]略称検索・解除 */
+  const formSearch = async (event) => {
     if (!nickname.value) return;
     const action = event.submitter.name;
     if (action === 'search') {
+      // 勝率表取得API連携（使用キャラ選択）
       winlossTable.value = await getWinLossTable(nickname.value);
-      if ( winlossTable.value.length > 0 ) {
+      if (winlossTable.value.length > 0) {
         useid.value = winlossTable.value[0].useid;
-        fighterTable.value = await getFighterInfoList(useid.value);
+        // 戦績表取得API連携
+        fighterTable.value = await getEnemyFighterList(useid.value);
       }
     } else if (action === 'cancel') {
       await initialize();
@@ -35,6 +39,6 @@ export function useBattleHistory(emit) {
     nickname,
     winlossTable,
     fighterTable,
-    search
+    formSearch
   };
 }

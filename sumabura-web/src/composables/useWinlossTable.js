@@ -1,8 +1,10 @@
-import { ref, computed, onMounted } from 'vue';
+import { ref, computed, onMounted, onBeforeUnmount } from 'vue';
 import { useRoute } from 'vue-router';
 import { getWinLossTable, updateCurrentRate, updateSaveRate } from '@/assets/js/request.js';
+import { emitter } from '@/assets/js/eventBus.js';
 
 export function useWinlossTable(emit) {
+  /** model */
   const useid = ref('');
   const nickname = ref('');
   const winlossTable = ref([]);
@@ -18,13 +20,13 @@ export function useWinlossTable(emit) {
     emit('selected-useid', useid.value);
     winlossTable.value = await getWinLossTable();
   }
-  /** 略称検索・解除 */
-  const search = async (event) => {
+  /** [event]略称検索・解除 */
+  const formSearch = async (event) => {
     if (!nickname.value) return;
     const action = event.submitter.name;
     if (action === 'search') {
       winlossTable.value = await getWinLossTable(nickname.value);
-      if ( winlossTable.value.length > 0 ) {
+      if (winlossTable.value.length > 0) {
         useid.value = winlossTable.value[0].useid;
         updateRate.value = winlossTable.value[0].current_rate;
         emit('selected-useid', useid.value);
@@ -33,8 +35,8 @@ export function useWinlossTable(emit) {
       await initialize();
     }
   }
-  /** レート更新・保存 */
-  const rateSaveUpdate = async (event) => {
+  /** [event]レート更新・保存 */
+  const formRateSaveUpdate = async (event) => {
     if (!useid.value) return;
     const action = event.submitter.name;
     if (action === 'update') {
@@ -50,11 +52,19 @@ export function useWinlossTable(emit) {
     const diff = current_rate - history_rate1;
     return {
       value: diff === 0 ? '' : (diff > 0 ? '+' + diff : '-' + Math.abs(diff)),
-      class: diff === 0 ? '' : (diff > 0 ? 'win'      : 'loss'              )
+      class: diff === 0 ? '' : (diff > 0 ? 'win' : 'loss')
     };
   };
   // 初期処理
   onMounted(() => initialize());
+  // 使用キャラ変更時にEvent発火 → 表示を更新
+  onMounted(() => {
+    emitter.on('refresh-winloss-table', initialize);
+  });
+  // コンポーネントが破棄される時にイベントリスナを解除
+  onBeforeUnmount(() => {
+    emitter.off('refresh-winloss-table', initialize);
+  });
   // 返却
   return {
     useid,
@@ -62,8 +72,8 @@ export function useWinlossTable(emit) {
     winlossTable,
     updateRate,
     isMainTopRoute,
-    search,
-    rateSaveUpdate,
+    formSearch,
+    formRateSaveUpdate,
     rateDeff
   };
 }

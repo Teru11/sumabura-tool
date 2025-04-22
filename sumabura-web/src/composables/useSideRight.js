@@ -14,14 +14,14 @@ export function useSideRight() {
     const tempList = []; // 最終 push 用
     let tempWinCnt = 0;
     let tempLossCnt = 0;
-    
+
     let streakCount = 0;
     let streakType = ''; // 'win' or 'loss'
     for (let i = 0; i < reversed.length; i++) {
       const item = reversed[i];
-  
+
       // 連勝・連敗判定（新→古の順で連勝数を数える）
-      if (item.result === streakType ) {
+      if (item.result === streakType) {
         streakCount++;
       } else {
         streakType = item.result;
@@ -33,14 +33,14 @@ export function useSideRight() {
       } else {
         tempLossCnt++;
       }
-  
+
       tempList.push({
         ...item,
         resultClass: streakType === 'win' ? 'win' : 'loss',
         streakStr: `${streakCount}連${streakType === 'win' ? '勝' : '敗'}`
       });
     }
-  
+
     // 勝敗結果反映
     win_cnt.value = tempWinCnt;
     loss_cnt.value = tempLossCnt;

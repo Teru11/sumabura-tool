@@ -9,8 +9,8 @@ const {
   winlossTable,
   updateRate,
   isMainTopRoute,
-  search,
-  rateSaveUpdate,
+  formSearch,
+  formRateSaveUpdate,
   rateDeff
 } = useWinlossTable(emit);
 </script>
@@ -21,7 +21,7 @@ const {
       <div class="title">勝率表</div>
       <div class="search" v-if="isMainTopRoute">
         <!-- 略称検索 -->
-        <form @submit.prevent="search">
+        <form @submit.prevent="formSearch">
           <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
           <button type="submit" name="search">検索</button>
           <button type="submit" name="cancel">解除</button>
@@ -29,7 +29,7 @@ const {
       </div>
       <div class="rate-update" v-if="isMainTopRoute && useid">
         <!-- レート更新 -->
-        <form @submit.prevent="rateSaveUpdate">
+        <form @submit.prevent="formRateSaveUpdate">
           <input type="text" id="rate" v-model="updateRate" />
           <button type="submit" name="update">更新</button>
           <button type="submit" name="save">保存</button>

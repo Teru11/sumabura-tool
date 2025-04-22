@@ -8,11 +8,11 @@ const useidRef = toRef(props, 'useid');
 const {
   nickname,
   fighterInfo,
-  search,
-  updateResult,
-  updateMemo,
+  fighterMemo,
   message,
-  fighterMemo
+  formSearch,
+  formUpdateResult,
+  formUpdateMemo
 } = useFighterInfo(useidRef);
 </script>
 
@@ -22,7 +22,7 @@ const {
       <div class="title">相手情報</div>
       <div class="search">
         <!-- 略称検索 -->
-        <form @submit.prevent="search">
+        <form @submit.prevent="formSearch">
           <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
           <button type="submit" name="search">検索</button>
         </form>
@@ -43,7 +43,7 @@ const {
           </tbody>
         </table>
         <div class="winloss-table">
-          <form @submit.prevent="updateResult">
+          <form @submit.prevent="formUpdateResult">
             <div class="data-row">
               <span>勝数</span>
               <span>{{ fighterInfo.win_cnt }}<button type="submit" class="win-btn" name="win">勝利</button></span>
@@ -65,7 +65,7 @@ const {
       </div>
 
       <div class="memo">
-        <form @submit.prevent="updateMemo">
+        <form @submit.prevent="formUpdateMemo">
           <div class="memo-header">
             <div>ファイターメモ</div>
             <button type="submit" name="update">更新</button>

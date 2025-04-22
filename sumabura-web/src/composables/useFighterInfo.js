@@ -1,26 +1,24 @@
 import { ref } from 'vue';
-import { getFighterInfo, updateFighterWinLoss, updateFighterMemo } from '@/assets/js/request.js';
+import { getEnemyFighterInfo, updateFighterWinLoss, updateFighterMemo } from '@/assets/js/request.js';
 import { emitter } from '@/assets/js/eventBus.js';
 
 export function useFighterInfo(useid) {
   /** model */
   const nickname = ref('');
   const fighterInfo = ref(null);
-  const message = ref('');
   const fighterMemo = ref('');
-  /** 略称検索 */
-  const search = async (event) => {
+  const message = ref('');
+
+  /** [event]略称検索 */
+  const formSearch = async () => {
     if (!nickname.value) return;
-    const action = event.submitter.name;
-    if (action === 'search') {
-      fighterInfo.value = await getFighterInfo(useid, nickname.value);
-      if (fighterInfo.value){
-        fighterMemo.value = fighterInfo.value.memo; 
-      }
+    fighterInfo.value = await getEnemyFighterInfo(useid, nickname.value);
+    if (fighterInfo.value){
+      fighterMemo.value = fighterInfo.value.memo; 
     }
   }
-  /** 結果更新 */
-  const updateResult = async (event) => {
+  /** [event]結果更新 */
+  const formUpdateResult = async (event) => {
     if (!fighterInfo.value) return;
     const action = event.submitter.name;
     if (action === 'win') {
@@ -28,12 +26,12 @@ export function useFighterInfo(useid) {
     } else if (action === 'loss') {
       await updateFighterWinLoss(useid, fighterInfo.value.fid, -1);
     }
+    message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
     // 本日戦績をリフレッシュ
     emitter.emit('refresh-today-battle-data');
-    message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
   }
   /** メモ更新 */
-  const updateMemo = async (event) => {
+  const formUpdateMemo = async () => {
     if (!fighterInfo.value) return;
     await updateFighterMemo(useid, fighterInfo.value.fid, fighterMemo.value);
     message.value = `${fighterInfo.value.fname}のメモを更新しました。`;
@@ -42,10 +40,10 @@ export function useFighterInfo(useid) {
   return {
     nickname,
     fighterInfo,
-    search,
-    updateResult,
-    updateMemo,
+    fighterMemo,
     message,
-    fighterMemo
+    formSearch,
+    formUpdateResult,
+    formUpdateMemo
   };
 }

@@ -7,7 +7,7 @@ const {
   nickname,
   winlossTable,
   fighterTable,
-  search
+  formSearch
 } = useBattleHistory();
 </script>
 
@@ -17,7 +17,7 @@ const {
       <div class="title">戦績表</div>
       <div class="search">
         <!-- 略称検索 -->
-        <form @submit.prevent="search">
+        <form @submit.prevent="formSearch">
           <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
           <button type="submit" name="search">検索</button>
           <button type="submit" name="cancel">解除</button>
@@ -31,7 +31,7 @@ const {
         <tbody>
           <tr>
             <td class="fighter-image">
-              <img :src="getFighterImage(winlossTable[0].useid)" />
+              <img :src="`.${getFighterImage(winlossTable[0].useid)}`" />
             </td>
             <td class="fighter-name">{{ winlossTable[0].fname }}</td>
           </tr>
@@ -61,7 +61,7 @@ const {
         </thead>
         <tbody>
           <tr v-for="row in fighterTable" :key="row.fid">
-            <td class="fighter-image"><img v-if="row.fid" :src="getFighterImage(row.fid)" /></td>
+            <td class="fighter-image"><img v-if="row.fid" :src="`.${getFighterImage(row.fid)}`" /></td>
             <td class="fighter-name">{{ row.fname }}</td>
             <td>{{ row.win_cnt + row.loss_cnt }}</td>
             <td>{{ row.win_cnt }}</td>

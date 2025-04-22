@@ -1,14 +1,15 @@
 import { get, post } from "./axios.js";
 
 // Mock
-import fighterListMock from '../mock/fighterList.json';
-import fighterInfoMock from '../mock/fighterInfo.json';
-import fighterInfoListMock from '../mock/fighterInfoList.json';
-import winLossTableMock from '../mock/winLossTable.json';
-import winLossSelectTableMock from '../mock/winLossSelectTable.json';
-import todayBattleHistoryMock from '../mock/todayBattleHistory.json';
-import matchHistoryMock from '../mock/matchHistory.json';
-import matchSelectHistoryMock from '../mock/matchSelectHistory.json';
+import fighterListMock from '../mock/fighterListMock.json';
+import fighterInfoMock from '../mock/fighterInfoMock.json';
+import enemyFighterInfoMock from '../mock/enemyFighterInfoMock.json';
+import enemyFighterListMock from '../mock/enemyFighterListMock.json';
+import winLossTableMock from '../mock/winLossTableMock.json';
+import winLossSelectTableMock from '../mock/winLossSelectTableMock.json';
+import todayBattleHistoryMock from '../mock/todayBattleHistoryMock.json';
+import matchHistoryMock from '../mock/matchHistoryMock.json';
+import matchSelectHistoryMock from '../mock/matchSelectHistoryMock.json';
 
 /***************************** 取得 *****************************/
 /** ファイターリストを取得 */
@@ -16,22 +17,28 @@ export async function getFighterList() {
   // Mock
   if (__USE_MOCK__) return fighterListMock;
   // API連携
-  const data = await get('fighter/list');
-  return data || [];
+  return await get('fighter/list');
 }
-/** 相手情報を取得 */
-export async function getFighterInfo(useid, nickname) {
+/** ファイター情報を取得 */
+export async function getFighterInfo(nickname) {
   // Mock
   if (__USE_MOCK__) return fighterInfoMock;
   // API連携
-  return await get(`info/get/${useid}/${nickname}`);
+  return await get(`fighter/info/${nickname}`);
+}
+/** 相手情報を取得 */
+export async function getEnemyFighterInfo(useid, nickname) {
+  // Mock
+  if (__USE_MOCK__) return enemyFighterInfoMock;
+  // API連携
+  return await get(`fighter/enemy/${useid}/${nickname}`);
 }
 /** 相手情報のリストを取得 */
-export async function getFighterInfoList(useid) {
+export async function getEnemyFighterList(useid) {
   // Mock
-  if (__USE_MOCK__) return fighterInfoListMock;
+  if (__USE_MOCK__) return enemyFighterListMock;
   // API連携
-  const data = await get(`info/list/${useid}`);
+  const data = await get(`fighter/enemy/list/${useid}`);
   return data || [];
 }
 /** 勝率表を取得 */
@@ -39,16 +46,14 @@ export async function getWinLossTable(nickname) {
   // Mock
   if (__USE_MOCK__ && !nickname) return winLossTableMock;      // 使用キャラ選択前
   if (__USE_MOCK__ && nickname) return winLossSelectTableMock; // 使用キャラ選択後
-
   // API連携
-  const data = await get(`winloss/table/${nickname}`);
-  return data || [];
+  return await get(`winloss/table/${nickname}`);
 }
 /** 本日の対戦記録を取得 */
 export async function getTodayBattleHistory(useid) {
   // Mock
   if (__USE_MOCK__) { 
-    // 乱数で変更
+    // 乱数で表示数変更
     const randomCount = Math.floor(Math.random() * 11); // 1〜11件
     const shuffled = [...todayBattleHistoryMock].sort(() => 0.5 - Math.random());
     return shuffled.slice(0, randomCount);
@@ -112,20 +117,20 @@ export async function updateNickName(id, nickname) {
 
 /***************************** 追加 *****************************/
 /** 使用ファイターの追加 */
-export async function insertFighterInfo(useid) {
+export async function insertUseFighter(useid) {
   // Mock
   if (__USE_MOCK__) return;
 
   const req = { useid: useid };
-  await post('insert/fighter/info', req);
+  await post('insert/fighter', req);
 }
 
 /***************************** 削除 *****************************/
 /** 使用ファイターの削除 */
-export async function deleteFighterInfo(useid) {
+export async function deleteUseFighter(useid) {
   // Mock
   if (__USE_MOCK__) return;
 
   const req = { useid: useid };
-  await post('delete/fighter/info', req);
+  await post('delete/fighter', req);
 }
