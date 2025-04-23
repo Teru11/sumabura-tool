@@ -74,22 +74,22 @@ button {
   font-size: 1rem;              /* フォントサイズ */
   line-height: 1.5;             /* 行間 */
   color: #fff;                /* テキスト色 */
-  background-color: #007bff;  /* 背景色 */
+  background-color: #000000;  /* 背景色 */
   border: 1px solid #ced4da;  /* 枠線 */
   border-radius: 0.25rem;       /* 角丸 */
   transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; /* アニメーション */
 }
 button:hover {
-  background-color: #0056b3;  /* ホバー時の背景色 */
-  border-color: #004085;      /* ホバー時の枠線色 */
+  background-color: #b35a00;  /* ホバー時の背景色 */
+  border-color: #854000;      /* ホバー時の枠線色 */
 }
 button:focus {
   outline: none;                                      /* フォーカス枠を非表示 */
-  box-shadow: 0 0 0 0.2rem rgba(38, 143, 255, 0.5); /* フォーカス時の影 */
+  box-shadow: 0 0 0 0.2rem rgba(255, 143, 38, 0.5); /* フォーカス時の影 */
 }
 button:active {
-  background-color: #004085;  /* アクティブ時の背景色 */
-  border-color: #003768;      /* アクティブ時の枠線色 */
+  background-color: #854900;  /* アクティブ時の背景色 */
+  border-color: #683700;      /* アクティブ時の枠線色 */
 }
 /** textarea */
 textarea {
@@ -107,9 +107,9 @@ textarea {
   resize: none; /* サイズ変更を禁止 */
 }
 textarea:focus {
-  border-color: #80bdff; /* フォーカス時の枠線色 */
+  border-color: #ffc680; /* フォーカス時の枠線色 */
   outline: 0;             /* デフォルトのフォーカス枠を非表示 */
-  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* フォーカス時の影 */
+  box-shadow: 0 0 0 0.2rem rgba(255, 174, 0, 0.25); /* フォーカス時の影 */
 }
 
 /****************************************/
