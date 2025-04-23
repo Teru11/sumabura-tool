@@ -18,6 +18,6 @@ export default defineConfig({
   },
   define: {
     // Mockを使用する場合、true。普段はfalse
-    __USE_MOCK__: true,
+    __USE_MOCK__: false,
   }
 })
