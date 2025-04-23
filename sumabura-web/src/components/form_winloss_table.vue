@@ -2,6 +2,10 @@
 <script setup>
 import { useWinlossTable } from '@/composables/useWinlossTable.js';
 import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
+import { toRef } from 'vue';
+// プレイヤー
+const props = defineProps({ imgAddPath: String });
+const imgAddPath = toRef(props, 'imgAddPath');
 const emit = defineEmits(['selected-useid']); // emit
 const {
   useid,
@@ -55,7 +59,7 @@ const {
         <tbody>
           <tr v-for="row in winlossTable" :key="row.useid">
             <td class="fighter-image">
-              <img v-if="row.useid" :src="getFighterImage(row.useid)" />
+              <img v-if="row.useid" :src="getFighterImage(row.useid, imgAddPath)" />
             </td>
             <td class="fighter-name">{{ row.fname }}</td>
             <td>{{ row.win_cnt }}</td>

@@ -31,7 +31,7 @@ const {
         <tbody>
           <tr>
             <td class="fighter-image">
-              <img :src="`.${getFighterImage(winlossTable[0].useid)}`" />
+              <img :src="getFighterImage(winlossTable[0].useid, '.')" />
             </td>
             <td class="fighter-name">{{ winlossTable[0].fname }}</td>
           </tr>
@@ -61,7 +61,7 @@ const {
         </thead>
         <tbody>
           <tr v-for="row in fighterTable" :key="row.fid">
-            <td class="fighter-image"><img v-if="row.fid" :src="`.${getFighterImage(row.fid)}`" /></td>
+            <td class="fighter-image"><img v-if="row.fid" :src="getFighterImage(row.fid, '.')" /></td>
             <td class="fighter-name">{{ row.fname }}</td>
             <td>{{ row.win_cnt + row.loss_cnt }}</td>
             <td>{{ row.win_cnt }}</td>

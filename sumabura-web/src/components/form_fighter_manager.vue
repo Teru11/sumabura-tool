@@ -25,14 +25,14 @@ const {
       <div class="message">{{ message }}</div>
     </div>
 
-    <div class="fighter-table fighter-info" v-if="fighterInfo">
+    <div class="fighter-table fighter-info">
       <table class="fighter-name-view">
         <tbody>
           <tr>
             <td class="fighter-image">
-              <img :src="`.${getFighterImage(fighterInfo.fid)}`" />
+              <img :src="getFighterImage(fighterInfo?.fid || 1, '.')" />
             </td>
-            <td class="fighter-name">{{ fighterInfo.fname }}</td>
+            <td class="fighter-name">{{ fighterInfo?.fname || '' }}</td>
           </tr>
         </tbody>
       </table>
@@ -42,12 +42,12 @@ const {
       </form>
     </div>
 
-    <div class="nickname-form" v-if="fighterInfo">
+    <div class="nickname-form">
       <span style="margin-right: 20px">略称名</span>
       <span>:</span>
-      <span style="margin-left: 20px">{{ fighterInfo.nickname }}</span>
+      <span style="margin-left: 20px">{{ fighterInfo?.nickname || '' }}</span>
       <form @submit.prevent="formUpdateNickname">
-        <input type="text" id="updateNickname" v-model="updateNickname" />
+        <input type="text" id="updateNickname" v-model="updateNickname" :placeholder="`${fighterInfo?.nickname || ''}`"/>
         <button type="submit" name="update">略称名変更</button>
       </form>
     </div>

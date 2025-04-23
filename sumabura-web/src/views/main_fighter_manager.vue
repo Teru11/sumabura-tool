@@ -7,6 +7,6 @@ import Winloss from "../components/form_winloss_table.vue";
 <template>
   <div class="fighter-manager">
     <FighterManager />
-    <Winloss class="no-scroll" />
+    <Winloss class="no-scroll" :imgAddPath="`.`" />
   </div>
 </template>

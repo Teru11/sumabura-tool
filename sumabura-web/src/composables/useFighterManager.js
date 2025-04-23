@@ -22,10 +22,18 @@ export function useFighterManager() {
     if (!fid.value || !fighterInfo.value) return;
     const action = event.submitter.name;
     if (action === 'add') {
+      if (fighterInfo.value.use_flg === '1') {
+        message.value = `${fighterInfo.value.fname}は既に使用キャラに登録されています。`;
+        return;
+      }
       // 使用キャラ追加API連携
       await insertUseFighter(fid.value);
       message.value = `${fighterInfo.value.fname}を使用キャラに追加しました。`;
     } else if (action === 'delete') {
+      if (fighterInfo.value.use_flg === '0') {
+        message.value = `${fighterInfo.value.fname}は使用キャラに登録されていません。`;
+        return;
+      }
       // 使用キャラ削除API連携
       await deleteUseFighter(fid.value);
       message.value = `${fighterInfo.value.fname}を使用キャラから削除しました。`;
