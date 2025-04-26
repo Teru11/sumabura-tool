@@ -28,6 +28,3 @@ coverage
 *.sw?
 
 *.tsbuildinfo
-
-# custom
-vite.config.js

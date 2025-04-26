@@ -7,11 +7,11 @@ mkdir src
 # src直下にapplication.js作成（サーバー起動用）
 New-Item -ItemType File -Path ./src/application.js
 # 「Express.js」フレームワークをプロジェクトにインストール
-npm install express@latest
+npm install express
 # その他必要なNodeModuleのパッケージインストール
-npm install body-parser@latest cors@latest pg@latest js-yaml@latest
+npm install body-parser cors pg js-yaml
 # テストコードインストール（開発時だけ必要なパッケージ）
-npm install --save-dev jest@latest supertest@latest
+npm install --save-dev jest supertest
 ```
 
 # テスト実行

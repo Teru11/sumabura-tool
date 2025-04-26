@@ -107,11 +107,11 @@ export async function updateFighterWinLoss(useid, fid, result) {
   await post('update/winloss', req);
 }
 /** 略称名の変更 */
-export async function updateNickName(id, nickname) {
+export async function updateNickName(fid, nickname) {
   // Mock
   if (__USE_MOCK__) return;
 
-  const req = { id: id, nickname: nickname };
+  const req = { fid: fid, nickname: nickname };
   await post('update/nickname', req);
 }
 

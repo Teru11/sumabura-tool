@@ -5,9 +5,9 @@
 DROP TABLE IF EXISTS dev.fighter_master;
 -- テーブル作成
 CREATE TABLE dev.fighter_master(
-    id          INTEGER     NOT NULL,   -- ファイターID
-    fname       VARCHAR(30) NOT NULL,   -- ファイター名
-    nickname    VARCHAR(20) NOT NULL,   -- 略称
+    id          INTEGER     NOT NULL,
+    fname       VARCHAR(30) NOT NULL,
+    nickname    VARCHAR(20) NOT NULL,
     PRIMARY KEY(id)
 );
 -- 論理名付与
@@ -25,9 +25,10 @@ CREATE INDEX index_fighter_master ON dev.fighter_master(nickname);
 DROP TABLE IF EXISTS dev.used_fighters_manager;
 -- テーブル作成
 CREATE TABLE dev.used_fighters_manager(
-    useid           INTEGER     NOT NULL,                -- ファイターID
-    current_rate    INTEGER     NOT NULL,                -- 現レート
-    del_flg         BOOLEAN     NOT NULL DEFAULT FALSE,  -- 削除フラグ
+    useid           INTEGER     NOT NULL,
+    current_rate    INTEGER     NOT NULL DEFAULT 0,
+    del_flg         BOOLEAN     NOT NULL DEFAULT FALSE,
+    update_date     TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
     PRIMARY KEY(useid)
 );
 -- 論理名付与
@@ -35,6 +36,7 @@ COMMENT ON TABLE dev.used_fighters_manager IS 'プレイヤー管理';
 COMMENT ON COLUMN dev.used_fighters_manager.useid IS 'ファイターID';
 COMMENT ON COLUMN dev.used_fighters_manager.current_rate IS '現レート';
 COMMENT ON COLUMN dev.used_fighters_manager.del_flg IS '削除フラグ';
+COMMENT ON COLUMN dev.used_fighters_manager.update_date IS '更新日時';
 
 ---------------------------------------------------------------------------------
 -- 勝率管理テーブル
@@ -43,11 +45,11 @@ COMMENT ON COLUMN dev.used_fighters_manager.del_flg IS '削除フラグ';
 DROP TABLE IF EXISTS dev.win_loss_manager;
 -- テーブル作成
 CREATE TABLE dev.win_loss_manager(
-    useid       INTEGER NOT NULL,   -- 自分ファイターID
-    fid         INTEGER NOT NULL,   -- 相手ファイターID
-    win_cnt     INTEGER NOT NULL,   -- 勝数
-    loss_cnt    INTEGER NOT NULL,   -- 負数
-    memo        VARCHAR(100),       -- メモ
+    useid       INTEGER NOT NULL,
+    fid         INTEGER NOT NULL,
+    win_cnt     INTEGER NOT NULL DEFAULT 0,
+    loss_cnt    INTEGER NOT NULL DEFAULT 0,
+    memo        VARCHAR(100),
     PRIMARY KEY(useid, fid)
 );
 -- 論理名付与
@@ -65,10 +67,10 @@ COMMENT ON COLUMN dev.win_loss_manager.memo IS 'メモ';
 DROP TABLE IF EXISTS dev.history_match;
 -- テーブル作成
 CREATE TABLE dev.history_match(
-    history_match_date  TIMESTAMP   NOT NULL,   -- マッチング履歴日時
-    useid               INTEGER     NOT NULL,   -- 自分ファイターID
-    fid                 INTEGER     NOT NULL,   -- 相手ファイターID
-    result              VARCHAR(2)  NOT NULL,   -- 結果
+    history_match_date  TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    useid               INTEGER     NOT NULL,
+    fid                 INTEGER     NOT NULL,
+    result              VARCHAR(4)  NOT NULL,
     PRIMARY KEY(history_match_date, useid)
 );
 -- 論理名付与
@@ -85,9 +87,9 @@ COMMENT ON COLUMN dev.history_match.result IS '結果';
 DROP TABLE IF EXISTS dev.history_rate;
 -- テーブル作成
 CREATE TABLE dev.history_rate(
-    history_rate_date   TIMESTAMP   NOT NULL,   -- レート履歴日時
-    useid               INTEGER     NOT NULL,   -- 自分ファイターID
-    rate                INTEGER     NOT NULL,   -- レート
+    history_rate_date   TIMESTAMP   NOT NULL DEFAULT CURRENT_TIMESTAMP,
+    useid               INTEGER     NOT NULL,
+    rate                INTEGER     NOT NULL,
     PRIMARY KEY(history_rate_date, useid)
 );
 -- 論理名付与
