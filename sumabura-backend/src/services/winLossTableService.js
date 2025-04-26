@@ -1,5 +1,5 @@
 import { selectFighterId } from '../repositories/fighterMasterRepo.js';
-import { selectWinLossTable } from '../repositories/winLossTableRepository.js';
+import { selectWinLossTable } from '../repositories/winLossTableRepo.js';
 
 /** 勝率表を取得 */
 export async function fetchWinLossTable(nickname) {

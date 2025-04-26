@@ -6,7 +6,7 @@ import {
   handleGetEnemyList,
   handleInsertFighter,
   handleDeleteFighter,
-} from '../controllers/fighterManageController.js';
+} from '../controllers/fighterMasterController.js';
 import {
   handleGetWinLossTable,
 } from '../controllers/winLossTableController.js';

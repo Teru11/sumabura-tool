@@ -1,14 +1,14 @@
-import withTransaction from '../db/dbTransaction.js';
+import withTransaction from '../utils/dbTransaction.js';
 import { 
   selectFighterList, 
   selectFighterInfoByNickname, 
   selectEnemyInfo, 
   selectEnemyList, 
   selectFighterId
-} from '../repositories/fighterMasterRepository.js';
+} from '../repositories/fighterMasterRepo.js';
 import { 
-  createFighter,
-  removeFighter
+  createUsedFighter,
+  removeUsedFighter
 } from '../repositories/usedFightersRepo.js';
 import {
   createAllFighter
@@ -38,7 +38,7 @@ export async function fetchEnemyList(useid) {
 /** 使用ファイター追加 */
 export async function insertFighter(useid) {
   await withTransaction(async (client) => {
-    await createFighter(client, useid);
+    await createUsedFighter(client, useid);
     await createAllFighter(client, useid);
   });
 }
@@ -46,6 +46,6 @@ export async function insertFighter(useid) {
 /** 使用ファイター削除 */
 export async function deleteFighter(useid) {
   await withTransaction(async (client) => {
-    await removeFighter(client, useid);
+    await removeUsedFighter(client, useid);
   });
 }

@@ -1,4 +1,4 @@
-import withTransaction from '../db/dbTransaction.js';
+import withTransaction from '../utils/dbTransaction.js';
 import { modifyCurrentRate } from '../repositories/usedFightersRepo.js';
 import { modifySaveRate } from '../repositories/historyRateRepo.js';
 import { modifyMemo, modifyWinLossResult } from '../repositories/winLossRepo.js';

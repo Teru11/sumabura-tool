@@ -1,4 +1,4 @@
-import { selectTodayBattleHistory, selectAllMatchHistory } from '../repositories/historyRepository.js';
+import { selectTodayBattleHistory, selectAllMatchHistory } from '../repositories/historyMatchRepo.js';
 
 /** 本日の対戦記録を取得 */
 export async function fetchTodayBattleHistory(useid) {
