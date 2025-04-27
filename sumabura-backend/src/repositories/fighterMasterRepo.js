@@ -6,10 +6,10 @@ export async function selectFighterList() {
               select
                 fm.id as id
                 , fm.fname as name
-                , fm.nickname as nickname
-              from
+                , fm.nickname as nickname 
+              from 
                 ${pool.options.schema}.fighter_master as fm 
-              order by
+              order by 
                 fm.id;
               `;
   const res = await pool.query(sql);
@@ -27,7 +27,7 @@ export async function selectFighterId(nickname) {
               from 
                 ${pool.options.schema}.fighter_master as fm 
               where 
-                fm.nickname = ${nickname};
+                fm.nickname = '${nickname}';
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {
@@ -43,13 +43,13 @@ export async function selectFighterInfoByNickname(nickname) {
                 fm.id as fid
                 , fm.fname as fname
                 , fm.nickname as nickname
-                , case when ufm.useid is null then '0' else '1' end as use_flg
+                , case when ufm.useid is null then '0' else '1' end as use_flg 
               from 
                 ${pool.options.schema}.fighter_master as fm 
-                left join ${pool.options.schema}.used_fighters_manager as ufm
-                  on ufm.useid = fm.id
+                left join ${pool.options.schema}.used_fighters_manager as ufm 
+                  on ufm.useid = fm.id 
               where 
-                fm.nickname = ${nickname};
+                fm.nickname = '${nickname}';
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {
@@ -61,24 +61,24 @@ export async function selectFighterInfoByNickname(nickname) {
 /** 相手の情報を取得 */
 export async function selectEnemyInfo(useid, fid) {
   const sql = `
-              select
+              select 
                 fm.id as fid
                 , fm.fname as fname
                 , wm.win_cnt as win_cnt
                 , wm.loss_cnt as loss_cnt
                 , en.encount as encount
                 , wm.memo as memo 
-              from
+              from 
                 ${pool.options.schema}.win_loss_manager as wm 
                 inner join ${pool.options.schema}.fighter_master as fm 
                   on fm.id = wm.fid 
-                inner join ( 
-                  select
+                inner join (
+                  select 
                     fid
                     , sum(win_cnt + loss_cnt) as encount 
-                  from
-                    ${pool.options.schema}.win_loss_manager
-                  group by
+                  from 
+                    ${pool.options.schema}.win_loss_manager 
+                  group by 
                     fid
                 ) as en 
                   on en.fid = wm.fid 
@@ -102,10 +102,10 @@ export async function selectEnemyList(useid) {
 
   const sql = `
               select 
-                fm.id as fid
+                wm.fid as fid
                 , wm.win_cnt as win_cnt
                 , wm.loss_cnt as loss_cnt
-                , wm.memo as memo
+                , wm.memo as memo 
               from 
                 ${pool.options.schema}.win_loss_manager as wm 
               ${wheresql};
@@ -121,10 +121,8 @@ export async function selectEnemyList(useid) {
 export async function modifyNickname(client, fid, nickname) {
   const sql = `
               update ${pool.options.schema}.fighter_master 
-              set 
-                nickname = ${nickname} 
-              where 
-                id = ${fid};
+              set nickname = '${nickname}' 
+              where id = ${fid};
               `;
   await client.query(sql);
 }

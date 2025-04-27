@@ -7,12 +7,12 @@ export async function selectTodayBattleHistory(useid) {
                 hm.history_match_date as history_date
                 , hm.useid as useid
                 , hm.fid as fid
-                , hm.result as result
+                , hm.result as result 
               from 
                 ${pool.options.schema}.history_match as hm 
               where 
-                hm.useid = ${useid};
-              order by
+                hm.useid = ${useid} 
+              order by 
                 hm.history_match_date desc;
               `;
   const res = await pool.query(sql);
@@ -26,23 +26,23 @@ export async function selectTodayBattleHistory(useid) {
 export async function selectAllMatchHistory(useid) {
   let wheresql = '';
   if (useid) {
-    wheresql = `where hm.useid = ${useid}`;
+    wheresql = `where hm.useid = ${useid} `;
   }
 
   const sql = `
-              select
+              select 
                 hm.history_match_date as history_date
                 , fm_useid.fname as use_name
                 , fm_fid.fname as enemy_name
-                , hm.result as result
-              from
+                , hm.result as result 
+              from 
                 ${pool.options.schema}.history_match hm 
                 inner join ${pool.options.schema}.fighter_master fm_useid 
                   on fm_useid.id = hm.useid 
                 inner join ${pool.options.schema}.fighter_master fm_fid 
                   on fm_fid.id = hm.fid 
               ${wheresql}
-              order by
+              order by 
                 hm.history_match_date desc;
               `;
   const res = await pool.query(sql);
@@ -57,7 +57,7 @@ export async function createHistoryMatch(client, useid, fid, result) {
   const sql = `
               insert 
               into ${pool.options.schema}.history_match(history_match_date, useid, fid, result) 
-              values (now(), ${useid}, ${fid}, ${result});
+              values (now(), ${useid}, ${fid}, '${result}');
               `;
   await client.query(sql);
 }

@@ -1,12 +1,12 @@
 import withTransaction from '../utils/dbTransaction.js';
-import { 
-  selectFighterList, 
-  selectFighterInfoByNickname, 
-  selectEnemyInfo, 
-  selectEnemyList, 
+import {
+  selectFighterList,
+  selectFighterInfoByNickname,
+  selectEnemyInfo,
+  selectEnemyList,
   selectFighterId
 } from '../repositories/fighterMasterRepo.js';
-import { 
+import {
   createUsedFighter,
   removeUsedFighter
 } from '../repositories/usedFightersRepo.js';

@@ -22,9 +22,9 @@ export function useFighterInfo(useid) {
     if (!fighterInfo.value) return;
     const action = event.submitter.name;
     if (action === 'win') {
-      await updateFighterWinLoss(useid, fighterInfo.value.fid, 1);
+      await updateFighterWinLoss(useid, fighterInfo.value.fid, action);
     } else if (action === 'loss') {
-      await updateFighterWinLoss(useid, fighterInfo.value.fid, -1);
+      await updateFighterWinLoss(useid, fighterInfo.value.fid, action);
     }
     message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
     // 本日戦績をリフレッシュ

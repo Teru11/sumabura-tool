@@ -4,9 +4,9 @@ import pool from '../utils/db.js';
 export async function modifyMemo(client, useid, fid, memo) {
     const sql = `
                 update ${pool.options.schema}.win_loss_manager 
-                set
-                    memo = ${memo} 
-                where
+                set 
+                    memo = '${memo}' 
+                where 
                     useid = ${useid} 
                     and fid = ${fid};
                 `;
@@ -16,17 +16,17 @@ export async function modifyMemo(client, useid, fid, memo) {
 /** 勝敗を更新 */
 export async function modifyWinLossResult(client, useid, fid, result) {
     let updateParm;
-    if (result > 0) {
-        updateParm = 'win_cnt = win_cnt + 1';
+    if (result === 'win') {
+        updateParm = 'win_cnt = win_cnt + 1 ';
     } else {
-        updateParm = 'loss_cnt = loss_cnt + 1';
+        updateParm = 'loss_cnt = loss_cnt + 1 ';
     }
 
     const sql = `
                 update ${pool.options.schema}.win_loss_manager 
-                set
+                set 
                     ${updateParm}
-                where
+                where 
                     useid = ${useid} 
                     and fid = ${fid};
                 `;

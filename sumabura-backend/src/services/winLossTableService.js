@@ -5,7 +5,7 @@ import { selectWinLossTable } from '../repositories/winLossTableRepo.js';
 export async function fetchWinLossTable(nickname) {
     /** useid取得 */
     let useid = null;
-    if ( nickname ) {
+    if (nickname) {
         useid = await selectFighterId(nickname);
     }
 
