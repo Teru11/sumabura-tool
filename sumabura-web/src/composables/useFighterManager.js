@@ -9,6 +9,7 @@ export function useFighterManager() {
   const fighterInfo = ref(null);
   const updateNickname = ref('');
   const message = ref('');
+  const showMessage = ref(false);
   /** [event]略称検索 */
   const formSearch = async () => {
     if (!nickname.value) return;
@@ -24,22 +25,30 @@ export function useFighterManager() {
     if (action === 'add') {
       if (fighterInfo.value.use_flg === '1') {
         message.value = `${fighterInfo.value.fname}は既に使用キャラに登録されています。`;
+        showMessage.value = true;
+        setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
         return;
       }
       // 使用キャラ追加API連携
       const result = await insertUseFighter(fid.value);
       if (result) {
         message.value = `${fighterInfo.value.fname}を使用キャラに追加しました。`;
+        showMessage.value = true;
+        setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
       }
     } else if (action === 'delete') {
       if (fighterInfo.value.use_flg === '0') {
         message.value = `${fighterInfo.value.fname}は使用キャラに登録されていません。`;
+        showMessage.value = true;
+        setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
         return;
       }
       // 使用キャラ削除API連携
       const result = await deleteUseFighter(fid.value);
       if (result) {
         message.value = `${fighterInfo.value.fname}を使用キャラから削除しました。`;
+        showMessage.value = true;
+        setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
       }
     }
     // 再検索
@@ -53,13 +62,18 @@ export function useFighterManager() {
     // 略称変更API連携
     const result = await updateNickName(fid.value, updateNickname.value);
     if (result) {
-      message.value = `${fighterInfo.value.fname}の略称を「${updateNickname.value}」変更しました。`;
       // 再検索
       formSearch();
       // 略称名リストをリフレッシュ
       emitter.emit('refresh-nickname-list');
+      // メッセージ更新
+      message.value = `${fighterInfo.value.fname}の略称を「${updateNickname.value}」変更しました。`;
+      showMessage.value = true;
+      setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
     } else {
       message.value = `略称変更に失敗しました。`;
+      showMessage.value = true;
+      setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
     }
   }
   // 返却
@@ -69,6 +83,7 @@ export function useFighterManager() {
     fighterInfo,
     updateNickname,
     message,
+    showMessage,
     formSearch,
     formUpdateManager,
     formUpdateNickname

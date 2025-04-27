@@ -45,9 +45,8 @@ export function useWinlossTable(emit) {
     } else if (action === 'save') {
       result = await updateSaveRate(useid.value);
     }
-    if (result) {
-      winlossTable.value = await gethWinLossTable(nickname.value);
-    }
+    // 勝率表をリフレッシュ
+    emitter.emit('refresh-winloss-table-selected');
   }
   /** レート差分 */
   const rateDeff = (current_rate, history_rate1) => {

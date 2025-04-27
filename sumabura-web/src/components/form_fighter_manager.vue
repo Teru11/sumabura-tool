@@ -8,6 +8,7 @@ const {
   fighterInfo,
   updateNickname,
   message,
+  showMessage,
   formSearch,
   formUpdateManager,
   formUpdateNickname
@@ -22,7 +23,7 @@ const {
         <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
         <button type="submit" name="search">検索</button>
       </form>
-      <div class="message">{{ message }}</div>
+      <div v-if="showMessage" class="message">{{ message }}</div>
     </div>
 
     <div class="fighter-table fighter-info">

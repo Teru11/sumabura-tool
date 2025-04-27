@@ -8,6 +8,7 @@ export function useFighterInfo(useid) {
   const fighterInfo = ref(null);
   const fighterMemo = ref('');
   const message = ref('');
+  const showMessage = ref(false);
   /** 初期化 */
   const initialize = async () => {
     nickname.value = '';
@@ -23,6 +24,8 @@ export function useFighterInfo(useid) {
       fighterMemo.value = fighterInfo.value.memo; 
     } else {
       message.value = '存在しない略称です。';
+      showMessage.value = true;
+      setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
     }
   }
   /** [event]結果更新 */
@@ -38,7 +41,6 @@ export function useFighterInfo(useid) {
     }
 
     if (result){
-      message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
       // 本日戦績をリフレッシュ
       emitter.emit('refresh-today-battle-data');
       // マッチング履歴をリフレッシュ
@@ -47,6 +49,10 @@ export function useFighterInfo(useid) {
       emitter.emit('refresh-winloss-table-selected');
       // 相手情報を更新
       formSearch();
+      // メッセージ更新
+      message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
+      showMessage.value = true;
+      setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
     }
   }
   /** メモ更新 */
@@ -55,6 +61,8 @@ export function useFighterInfo(useid) {
     const result = await updateFighterMemo(useid.value, fighterInfo.value.fid, fighterMemo.value);
     if (result){
       message.value = `${fighterInfo.value.fname}のメモを更新しました。`;
+      showMessage.value = true;
+      setTimeout(() => {showMessage.value = false;}, 2000); // 2秒後に消える
     }
   }
   // useidの変更を監視してinitializeを呼び出す
@@ -67,6 +75,7 @@ export function useFighterInfo(useid) {
     fighterInfo,
     fighterMemo,
     message,
+    showMessage,
     formSearch,
     formUpdateResult,
     formUpdateMemo

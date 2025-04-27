@@ -10,7 +10,7 @@ const { fighterListTable } = useSideLeft();
       <table class="fighter-list table-scroll">
         <tbody>
           <tr v-for="row in fighterListTable" :key="row.id">
-            <td>{{ row.name }}</td><td>:</td><td>{{ row.nickname }}</td>
+            <td>{{ row.name }}</td><td>&nbsp;:&nbsp;</td><td>{{ row.nickname }}</td>
           </tr>
         </tbody>
       </table>

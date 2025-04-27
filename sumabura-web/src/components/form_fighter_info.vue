@@ -10,6 +10,7 @@ const {
   fighterInfo,
   fighterMemo,
   message,
+  showMessage,
   formSearch,
   formUpdateResult,
   formUpdateMemo
@@ -27,7 +28,7 @@ const {
           <button type="submit" name="search">検索</button>
         </form>
       </div>
-      <div class="message">{{ message }}</div>
+      <div v-if="showMessage" class="message">{{ message }}</div>
     </div>
 
     <div class="fighter-info" v-if="fighterInfo">
