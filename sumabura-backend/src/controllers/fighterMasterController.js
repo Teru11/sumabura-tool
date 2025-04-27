@@ -56,8 +56,16 @@ export async function handleGetEnemyList(req, res) {
 /** 使用ファイター追加 */
 export async function handleInsertFighter(req, res) {
   try {
-    const useid = req.body;
+    const { useid } = req.body;
+
+    if (!useid) {
+      // parameter error
+      return res.status(400).json({ error: 'useidの指定がありません' });
+    }
+
     await service.insertFighter(useid);
+    
+    res.status(200).json({ message: '使用ファイターを追加しました' });
   } catch (error) {
     console.error("handleInsertFighter error:", error);
     res.status(500).json({ error: error.message });
@@ -68,7 +76,15 @@ export async function handleInsertFighter(req, res) {
 export async function handleDeleteFighter(req, res) {
   try {
     const { useid } = req.body;
+
+    if (!useid) {
+      // parameter error
+      return res.status(400).json({ error: 'useidの指定がありません' });
+    }
+
     await service.deleteFighter(useid);
+
+    res.status(200).json({ message: '使用ファイターを削除しました' });
   } catch (error) {
     console.error("handleDeleteFighter error:", error);
     res.status(500).json({ error: error.message });

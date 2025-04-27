@@ -31,7 +31,7 @@ export async function getEnemyFighterInfo(useid, nickname) {
   // Mock
   if (__USE_MOCK__) return enemyFighterInfoMock;
   // API連携
-  return await get(`fighter/enemy/${useid}/${nickname}`);
+  return await get(`fighter/enemy/info/${useid}/${nickname}`);
 }
 /** 相手情報のリストを取得 */
 export async function getEnemyFighterList(useid) {
@@ -50,7 +50,7 @@ export async function getWinLossTable(nickname) {
   return await get(`winloss/table/${nickname}`);
 }
 /** 本日の対戦記録を取得 */
-export async function getTodayBattleHistory(useid) {
+export async function getTodayBattleHistory() {
   // Mock
   if (__USE_MOCK__) { 
     // 乱数で表示数変更
@@ -60,7 +60,7 @@ export async function getTodayBattleHistory(useid) {
     // return todayBattleHistoryMock;
   }
   // API連携
-  const data = await get(`history/battle/today/${useid}`);
+  const data = await get(`history/battle/today`);
   return data || [];
 }
 /** 対戦記録を取得 */

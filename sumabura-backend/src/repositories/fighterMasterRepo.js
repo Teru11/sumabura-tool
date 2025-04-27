@@ -108,7 +108,8 @@ export async function selectEnemyList(useid) {
                 , wm.memo as memo 
               from 
                 ${pool.options.schema}.win_loss_manager as wm 
-              ${wheresql};
+              ${wheresql}
+              order by wm.fid;
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {

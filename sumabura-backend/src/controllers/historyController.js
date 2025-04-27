@@ -2,9 +2,8 @@ import * as service from '../services/historyService.js';
 
 /** 本日の対戦記録を取得 */
 export async function handleGetTodayBattleHistory(req, res) {
-    const { useid } = req.params;
     try {
-        const data = await service.fetchTodayBattleHistory(useid);
+        const data = await service.fetchTodayBattleHistory();
         res.json(data);
     } catch (error) {
         console.error('handleGetTodayBattleHistory error:', error);

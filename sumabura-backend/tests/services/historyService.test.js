@@ -8,7 +8,7 @@ afterAll(async () => {
 
 describe('historyManagerService 取得テスト', () => {
   test('本日の対戦記録を取得 正常系', async () => {
-    const result = await service.fetchTodayBattleHistory(12);
+    const result = await service.fetchTodayBattleHistory();
     // データあり
     expect(result).toBeDefined();
   });

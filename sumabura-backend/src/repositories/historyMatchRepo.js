@@ -1,7 +1,7 @@
 import pool from '../utils/db.js';
 
 /** 本日の対戦記録を取得 */
-export async function selectTodayBattleHistory(useid) {
+export async function selectTodayBattleHistory() {
   const sql = `
               select 
                 hm.history_match_date as history_date
@@ -10,8 +10,6 @@ export async function selectTodayBattleHistory(useid) {
                 , hm.result as result 
               from 
                 ${pool.options.schema}.history_match as hm 
-              where 
-                hm.useid = ${useid} 
               order by 
                 hm.history_match_date desc;
               `;
