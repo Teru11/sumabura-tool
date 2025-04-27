@@ -13,7 +13,6 @@ export function useFighterManager() {
   const formSearch = async () => {
     if (!nickname.value) return;
     fighterInfo.value = await getFighterInfo(nickname.value);
-    console.log(fighterInfo.value);
     if (fighterInfo.value) {
       fid.value = fighterInfo.value.fid;
     }
@@ -43,6 +42,8 @@ export function useFighterManager() {
         message.value = `${fighterInfo.value.fname}を使用キャラから削除しました。`;
       }
     }
+    // 再検索
+    formSearch();
     // 勝率表をリフレッシュ
     emitter.emit('refresh-winloss-table');
   }
@@ -50,10 +51,16 @@ export function useFighterManager() {
   const formUpdateNickname = async () => {
     if (!fid.value || !updateNickname.value) return;
     // 略称変更API連携
-    await updateNickName(fid.value, updateNickname.value);
-    message.value = `${fighterInfo.value.fname}の略称を「${updateNickname.value}」変更しました。`;
-    // 略称名リストをリフレッシュ
-    emitter.emit('refresh-nickname-list');
+    const result = await updateNickName(fid.value, updateNickname.value);
+    if (result) {
+      message.value = `${fighterInfo.value.fname}の略称を「${updateNickname.value}」変更しました。`;
+      // 再検索
+      formSearch();
+      // 略称名リストをリフレッシュ
+      emitter.emit('refresh-nickname-list');
+    } else {
+      message.value = `略称変更に失敗しました。`;
+    }
   }
   // 返却
   return {

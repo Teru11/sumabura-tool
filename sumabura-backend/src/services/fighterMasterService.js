@@ -8,6 +8,8 @@ import {
   selectEnemyListByALL
 } from '../repositories/fighterMasterRepo.js';
 import {
+  selectUsedFighter,
+  modifyUsedFighter,
   createUsedFighter,
   removeUsedFighter
 } from '../repositories/usedFightersRepo.js';
@@ -43,8 +45,16 @@ export async function fetchEnemyList(useid) {
 /** 使用ファイター追加 */
 export async function insertFighter(useid) {
   await withTransaction(async (client) => {
-    await createUsedFighter(client, useid);
-    await createAllFighter(client, useid);
+    // データの存在チェック
+    const result = await selectUsedFighter(useid);
+    if ( result ) {
+      // 再度、使用可能にする場合、更新する
+      await modifyUsedFighter(client, useid);
+    } else {
+      // 追加
+      await createUsedFighter(client, useid);
+      await createAllFighter(client, useid);
+    }
   });
 }
 

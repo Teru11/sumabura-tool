@@ -26,7 +26,7 @@ export function useWinlossTable(emit) {
     const action = event.submitter.name;
     if (action === 'search') {
       winlossTable.value = await getWinLossTable(nickname.value);
-      if (winlossTable.value.length > 0) {
+      if (winlossTable.value.length === 1) {
         useid.value = winlossTable.value[0].useid;
         updateRate.value = winlossTable.value[0].current_rate;
         emit('selected-useid', useid.value);
@@ -58,15 +58,17 @@ export function useWinlossTable(emit) {
       class: diff === 0 ? '' : (diff > 0 ? 'win' : 'loss')
     };
   };
+  const refreshWinLossTable = () => formSearch({ submitter: { name: 'search' } });
   // 初期処理
-  onMounted(() => initialize());
-  // 使用キャラ変更時にEvent発火 → 表示を更新
   onMounted(() => {
-    emitter.on('refresh-winloss-table', initialize);
+    initialize(); // 初期化
+    emitter.on('refresh-winloss-table', initialize); // 使用キャラ追加・削除時
+    emitter.on('refresh-winloss-table-selected', refreshWinLossTable); // 勝敗更新時
   });
   // コンポーネントが破棄される時にイベントリスナを解除
   onBeforeUnmount(() => {
     emitter.off('refresh-winloss-table', initialize);
+    emitter.off('refresh-winloss-table-selected', refreshWinLossTable);
   });
   // 返却
   return {

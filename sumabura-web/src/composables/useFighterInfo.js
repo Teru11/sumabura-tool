@@ -1,4 +1,4 @@
-import { ref } from 'vue';
+import { ref, watch } from 'vue';
 import { getEnemyFighterInfo, updateFighterWinLoss, updateFighterMemo } from '@/assets/js/request.js';
 import { emitter } from '@/assets/js/eventBus.js';
 
@@ -8,7 +8,13 @@ export function useFighterInfo(useid) {
   const fighterInfo = ref(null);
   const fighterMemo = ref('');
   const message = ref('');
-
+  /** 初期化 */
+  const initialize = async () => {
+    nickname.value = '';
+    fighterMemo.value = '';
+    fighterInfo.value = null;
+    message.value = '';
+  }
   /** [event]略称検索 */
   const formSearch = async () => {
     if (!nickname.value) return;
@@ -37,7 +43,9 @@ export function useFighterInfo(useid) {
       emitter.emit('refresh-today-battle-data');
       // マッチング履歴をリフレッシュ
       emitter.emit('refresh-match-history');
-      // 情報を更新
+      // 勝率表をリフレッシュ
+      emitter.emit('refresh-winloss-table-selected');
+      // 相手情報を更新
       formSearch();
     }
   }
@@ -49,6 +57,10 @@ export function useFighterInfo(useid) {
       message.value = `${fighterInfo.value.fname}のメモを更新しました。`;
     }
   }
+  // useidの変更を監視してinitializeを呼び出す
+  watch(useid, () => {
+    initialize();
+  }, { immediate: true });
   // 返却
   return {
     nickname,

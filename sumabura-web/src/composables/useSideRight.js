@@ -47,11 +47,10 @@ export function useSideRight() {
     // 最終結果を元の表示順（古い順）に戻して反映
     todayBattleHistoryTable.value = tempList.reverse();
   };
-  // 初期処理（マウント時に1回実行）
-  onMounted(() => initialize());
-  // 勝敗結果更新時にEvent発火 → 表示を更新
+  // 初期処理
   onMounted(() => {
-    emitter.on('refresh-today-battle-data', initialize);
+    initialize(); // 初期化
+    emitter.on('refresh-today-battle-data', initialize); // 勝敗更新時
   });
   // コンポーネントが破棄される時にイベントリスナを解除
   onBeforeUnmount(() => {

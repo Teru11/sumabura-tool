@@ -44,7 +44,8 @@ export async function selectAllMatchHistory(useid) {
                   on fm_fid.id = hm.fid 
               ${wheresql}
               order by 
-                hm.history_match_date desc;
+                hm.history_match_date desc 
+              limit 20;
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {

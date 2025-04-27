@@ -43,7 +43,7 @@ export async function selectFighterInfoByNickname(nickname) {
                 fm.id as fid
                 , fm.fname as fname
                 , fm.nickname as nickname
-                , case when ufm.useid is null then '0' else '1' end as use_flg 
+                , case when ufm.useid is null or ufm.del_flg = true then '0' else '1' end as use_flg 
               from 
                 ${pool.options.schema}.fighter_master as fm 
                 left join ${pool.options.schema}.used_fighters_manager as ufm 
@@ -55,7 +55,7 @@ export async function selectFighterInfoByNickname(nickname) {
   if (res.rows.length === 0) {
     return null;
   }
-  return res.rows;
+  return res.rows[0];
 }
 
 /** 相手の情報を取得 */

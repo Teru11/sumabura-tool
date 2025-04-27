@@ -8,11 +8,10 @@ export function useSideLeft() {
   const initialize = async () => {
     fighterListTable.value = await getFighterList();
   }
-  // 初期処理（マウント時に1回実行）
-  onMounted(() => initialize());
-  // 略称名変更時にEvent発火 → 表示を更新
+  // 初期処理
   onMounted(() => {
-    emitter.on('refresh-nickname-list', initialize);
+    initialize(); // 初期化
+    emitter.on('refresh-nickname-list', initialize); // 略称名変更時
   });
   // コンポーネントが破棄される時にイベントリスナを解除
   onBeforeUnmount(() => {

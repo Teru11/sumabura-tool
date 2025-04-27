@@ -52,11 +52,11 @@ export function useMatchHistory(useidRef) {
   }, { immediate: true });
   // 勝敗結果更新時にEvent発火 → 表示を更新
   onMounted(() => {
-    emitter.on('refresh-match-history', () => initialize(useidRef.value)); // 修正
+    emitter.on('refresh-match-history', () => initialize(useidRef.value));
   });
   // コンポーネントが破棄される時にイベントリスナを解除
   onBeforeUnmount(() => {
-    emitter.off('refresh-match-history', () => initialize(useidRef.value)); // 修正
+    emitter.off('refresh-match-history', () => initialize(useidRef.value));
   });
   // 返却
   return {

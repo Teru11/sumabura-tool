@@ -49,7 +49,7 @@ export async function selectWinLossTable(useid) {
                     , hrs.history_rate2
                     , hrs.history_rate2_date 
                 order by 
-                    um.current_rate;
+                    um.current_rate desc;
                 `;
     const res = await pool.query(sql);
 
