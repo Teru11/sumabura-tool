@@ -93,23 +93,47 @@ export async function selectEnemyInfo(useid, fid) {
   return res.rows[0];
 }
 
-/** 相手リストを取得（useid=nullの場合は全件取得） */
-export async function selectEnemyList(useid) {
-  let wheresql = '';
-  if (useid) {
-    wheresql = `where wm.useid = ${useid}`;
-  }
-
+/** 相手リストを取得（useid指定） */
+export async function selectEnemyListByUseId(useid) {
   const sql = `
               select 
                 wm.fid as fid
+                , fm.fname as fname
                 , wm.win_cnt as win_cnt
                 , wm.loss_cnt as loss_cnt
                 , wm.memo as memo 
               from 
                 ${pool.options.schema}.win_loss_manager as wm 
-              ${wheresql}
-              order by wm.fid;
+                inner join ${pool.options.schema}.fighter_master as fm 
+                  on fm.id = wm.fid 
+              where 
+                wm.useid = ${useid} 
+              order by fid;
+              `;
+  const res = await pool.query(sql);
+  if (res.rows.length === 0) {
+    return [];
+  }
+  return res.rows;
+}
+
+/** 相手リストを取得（全件取得） */
+export async function selectEnemyListByALL() {
+  const sql = `
+              select 
+                wm.fid as fid
+                , fm.fname as fname
+                , sum(wm.win_cnt) as win_cnt
+                , sum(wm.loss_cnt) as loss_cnt
+                , '' as memo 
+              from 
+                ${pool.options.schema}.win_loss_manager as wm 
+                inner join ${pool.options.schema}.fighter_master as fm 
+                  on fm.id = wm.fid 
+              group by 
+                wm.fid,
+                fm.fname
+              order by fid;
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {

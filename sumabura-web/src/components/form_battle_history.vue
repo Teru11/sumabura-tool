@@ -63,7 +63,7 @@ const {
           <tr v-for="row in fighterTable" :key="row.fid">
             <td class="fighter-image"><img v-if="row.fid" :src="getFighterImage(row.fid, '.')" /></td>
             <td class="fighter-name">{{ row.fname }}</td>
-            <td>{{ row.win_cnt + row.loss_cnt }}</td>
+            <td>{{ Number(row.win_cnt) + Number(row.loss_cnt) }}</td>
             <td>{{ row.win_cnt }}</td>
             <td>{{ row.loss_cnt }}</td>
             <td>{{ calcWinRate(row.win_cnt, row.loss_cnt) }}%</td>

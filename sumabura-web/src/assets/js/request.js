@@ -80,7 +80,7 @@ export async function updateCurrentRate(useid, current_rate) {
   if (__USE_MOCK__) return;
   
   const req = { useid: useid, current_rate: current_rate };
-  await post('update/current/rate', req);
+  return await post('update/current/rate', req);
 }
 /** レートを保存 */
 export async function updateSaveRate(useid) {
@@ -88,7 +88,7 @@ export async function updateSaveRate(useid) {
   if (__USE_MOCK__) return;
 
   const req = { useid: useid };
-  await post('update/save/rate', req);
+  return await post('update/save/rate', req);
 }
 /** 相手情報のメモを更新 */
 export async function updateFighterMemo(useid, fid, memo) {
@@ -96,7 +96,7 @@ export async function updateFighterMemo(useid, fid, memo) {
   if (__USE_MOCK__) return;
 
   const req = { useid: useid, fid: fid, memo: memo };
-  await post('update/memo', req);
+  return await post('update/memo', req);
 }
 /** 相手情報の勝敗を更新 */
 export async function updateFighterWinLoss(useid, fid, result) {
@@ -104,7 +104,7 @@ export async function updateFighterWinLoss(useid, fid, result) {
   if (__USE_MOCK__) return;
 
   const req = { useid: useid, fid: fid, result: result };
-  await post('update/winloss', req);
+  return await post('update/winloss', req);
 }
 /** 略称名の変更 */
 export async function updateNickName(fid, nickname) {
@@ -112,7 +112,7 @@ export async function updateNickName(fid, nickname) {
   if (__USE_MOCK__) return;
 
   const req = { fid: fid, nickname: nickname };
-  await post('update/nickname', req);
+  return await post('update/nickname', req);
 }
 
 /***************************** 追加 *****************************/
@@ -122,7 +122,7 @@ export async function insertUseFighter(useid) {
   if (__USE_MOCK__) return;
 
   const req = { useid: useid };
-  await post('insert/fighter', req);
+  return await post('insert/fighter', req);
 }
 
 /***************************** 削除 *****************************/
@@ -132,5 +132,5 @@ export async function deleteUseFighter(useid) {
   if (__USE_MOCK__) return;
 
   const req = { useid: useid };
-  await post('delete/fighter', req);
+  return await post('delete/fighter', req);
 }

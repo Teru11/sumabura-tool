@@ -1,5 +1,6 @@
-import { ref, watch } from 'vue';
+import { ref, watch, onMounted, onBeforeUnmount } from 'vue';
 import { getMatchHistory } from '@/assets/js/request.js';
+import { emitter } from '@/assets/js/eventBus.js';
 
 export function useMatchHistory(useidRef) {
   /** model */
@@ -49,6 +50,14 @@ export function useMatchHistory(useidRef) {
   watch(useidRef, (useid) => {
     initialize(useid);
   }, { immediate: true });
+  // 勝敗結果更新時にEvent発火 → 表示を更新
+  onMounted(() => {
+    emitter.on('refresh-match-history', () => initialize(useidRef.value)); // 修正
+  });
+  // コンポーネントが破棄される時にイベントリスナを解除
+  onBeforeUnmount(() => {
+    emitter.off('refresh-match-history', () => initialize(useidRef.value)); // 修正
+  });
   // 返却
   return {
     matchHistoryTable

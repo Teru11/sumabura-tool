@@ -13,7 +13,7 @@ export function useBattleHistory() {
     nickname.value = '';
     winlossTable.value = [];
     // 戦績表取得API連携
-    fighterTable.value = await getEnemyFighterList();
+    fighterTable.value = await getEnemyFighterList('');
   }
   /** [event]略称検索・解除 */
   const formSearch = async (event) => {

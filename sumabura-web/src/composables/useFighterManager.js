@@ -13,6 +13,7 @@ export function useFighterManager() {
   const formSearch = async () => {
     if (!nickname.value) return;
     fighterInfo.value = await getFighterInfo(nickname.value);
+    console.log(fighterInfo.value);
     if (fighterInfo.value) {
       fid.value = fighterInfo.value.fid;
     }
@@ -27,16 +28,20 @@ export function useFighterManager() {
         return;
       }
       // 使用キャラ追加API連携
-      await insertUseFighter(fid.value);
-      message.value = `${fighterInfo.value.fname}を使用キャラに追加しました。`;
+      const result = await insertUseFighter(fid.value);
+      if (result) {
+        message.value = `${fighterInfo.value.fname}を使用キャラに追加しました。`;
+      }
     } else if (action === 'delete') {
       if (fighterInfo.value.use_flg === '0') {
         message.value = `${fighterInfo.value.fname}は使用キャラに登録されていません。`;
         return;
       }
       // 使用キャラ削除API連携
-      await deleteUseFighter(fid.value);
-      message.value = `${fighterInfo.value.fname}を使用キャラから削除しました。`;
+      const result = await deleteUseFighter(fid.value);
+      if (result) {
+        message.value = `${fighterInfo.value.fname}を使用キャラから削除しました。`;
+      }
     }
     // 勝率表をリフレッシュ
     emitter.emit('refresh-winloss-table');

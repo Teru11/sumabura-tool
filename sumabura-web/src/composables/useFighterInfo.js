@@ -12,29 +12,42 @@ export function useFighterInfo(useid) {
   /** [event]略称検索 */
   const formSearch = async () => {
     if (!nickname.value) return;
-    fighterInfo.value = await getEnemyFighterInfo(useid, nickname.value);
+    fighterInfo.value = await getEnemyFighterInfo(useid.value, nickname.value);
     if (fighterInfo.value){
       fighterMemo.value = fighterInfo.value.memo; 
+    } else {
+      message.value = '存在しない略称です。';
     }
   }
   /** [event]結果更新 */
   const formUpdateResult = async (event) => {
     if (!fighterInfo.value) return;
     const action = event.submitter.name;
+
+    let result = '';
     if (action === 'win') {
-      await updateFighterWinLoss(useid, fighterInfo.value.fid, action);
+      result = await updateFighterWinLoss(useid.value, fighterInfo.value.fid, action);
     } else if (action === 'loss') {
-      await updateFighterWinLoss(useid, fighterInfo.value.fid, action);
+      result = await updateFighterWinLoss(useid.value, fighterInfo.value.fid, action);
     }
-    message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
-    // 本日戦績をリフレッシュ
-    emitter.emit('refresh-today-battle-data');
+
+    if (result){
+      message.value = `${fighterInfo.value.fname}との対戦結果を勝利で更新しました。`;
+      // 本日戦績をリフレッシュ
+      emitter.emit('refresh-today-battle-data');
+      // マッチング履歴をリフレッシュ
+      emitter.emit('refresh-match-history');
+      // 情報を更新
+      formSearch();
+    }
   }
   /** メモ更新 */
   const formUpdateMemo = async () => {
     if (!fighterInfo.value) return;
-    await updateFighterMemo(useid, fighterInfo.value.fid, fighterMemo.value);
-    message.value = `${fighterInfo.value.fname}のメモを更新しました。`;
+    const result = await updateFighterMemo(useid.value, fighterInfo.value.fid, fighterMemo.value);
+    if (result){
+      message.value = `${fighterInfo.value.fname}のメモを更新しました。`;
+    }
   }
   // 返却
   return {

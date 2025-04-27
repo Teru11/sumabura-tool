@@ -39,12 +39,15 @@ export function useWinlossTable(emit) {
   const formRateSaveUpdate = async (event) => {
     if (!useid.value) return;
     const action = event.submitter.name;
+    let result = '';
     if (action === 'update') {
-      await updateCurrentRate(useid.value, updateRate.value);
+      result = await updateCurrentRate(useid.value, updateRate.value);
     } else if (action === 'save') {
-      await updateSaveRate(useid.value);
+      result = await updateSaveRate(useid.value);
     }
-    winlossTable.value = await gethWinLossTable(nickname.value);
+    if (result) {
+      winlossTable.value = await gethWinLossTable(nickname.value);
+    }
   }
   /** レート差分 */
   const rateDeff = (current_rate, history_rate1) => {

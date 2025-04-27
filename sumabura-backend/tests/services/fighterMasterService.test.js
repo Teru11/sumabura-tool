@@ -28,10 +28,16 @@ describe('fighterMasterService 取得テスト', () => {
   });
 
   test('相手リストを取得（useid） 正常系', async () => {
-    const result = await service.fetchEnemyList(12);
+    const result1 = await service.fetchEnemyList(12);
     // データあり
-    expect(result).toBeDefined();
+    expect(result1).toBeDefined();
     // 想定82件
-    expect(result).toHaveLength(82);  
+    expect(result1).toHaveLength(82);  
+
+    const result2 = await service.fetchEnemyList();
+    // データあり
+    expect(result2).toBeDefined();
+    // 想定82件
+    expect(result2).toHaveLength(82);  
   });
 });

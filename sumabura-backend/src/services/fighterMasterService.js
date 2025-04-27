@@ -3,8 +3,9 @@ import {
   selectFighterList,
   selectFighterInfoByNickname,
   selectEnemyInfo,
-  selectEnemyList,
-  selectFighterId
+  selectFighterId,
+  selectEnemyListByUseId,
+  selectEnemyListByALL
 } from '../repositories/fighterMasterRepo.js';
 import {
   createUsedFighter,
@@ -32,7 +33,11 @@ export async function fetchEnemyInfo(useid, nickname) {
 
 /** 相手リストを取得（useid） */
 export async function fetchEnemyList(useid) {
-  return await selectEnemyList(useid);
+  if (useid) {
+    return await selectEnemyListByUseId(useid);
+  } else {
+    return await selectEnemyListByALL();
+  }
 }
 
 /** 使用ファイター追加 */
