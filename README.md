@@ -37,3 +37,20 @@ cd sumabura-backend && npm run start:dev
 # フロントのみ
 cd sumabura-web && npm run dev
 ```
+
+# AI定型文
+```text
+front：Vue3（js）
+backend：Express
+DB：PostgreSQL
+上記で個人のWeb開発をしています。
+これからこの内容について質問していきます。
+```
+
+# 課題
+1.  [Vue]faviconを追加する（タブの左側の画像部分の設定）
+2.  [Vue]ボタンの活性・非活性を設定する。
+3.  [Vue]メッセージを自動的に削除
+4.  [Vue]スクロールの大きさを調整
+5.  [Vue]戦績画面のヘッダー押下で昇順降順を変更可能にする。
+7.  [infra]データ移行ツール
