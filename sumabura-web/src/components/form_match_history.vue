@@ -1,6 +1,7 @@
 <!--【F】対戦記録フォーム -->
 <script setup>
 import { useMatchHistory } from '@/composables/useMatchHistory.js';
+import { formatDate } from '@/assets/js/common.js';
 import { toRef } from 'vue';
 const props = defineProps({ useid: String });
 const useidRef = toRef(props, 'useid');
@@ -19,7 +20,7 @@ const {
               <td colspan="6"><div class="dateline"><!-- 日付変更線 --></div></td>
             </template>
             <template v-else>
-              <td class="date">{{ row.history_date }}</td>
+              <td class="date">{{ formatDate(row.history_date, true) }}</td>
               <td class="fighter-name">{{ row.use_name }}</td>
               <td class="vs">VS</td>
               <td class="fighter-name">{{ row.enemy_name }}</td>

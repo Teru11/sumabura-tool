@@ -1,7 +1,7 @@
 <!--【F】勝率表フレーム -->
 <script setup>
 import { useWinlossTable } from '@/composables/useWinlossTable.js';
-import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
+import { calcWinRate, getFighterImage, formatDate } from '@/assets/js/common.js';
 import { toRef } from 'vue';
 // プレイヤー
 const props = defineProps({ imgAddPath: String });
@@ -65,12 +65,12 @@ const {
             <td>{{ row.win_cnt }}</td>
             <td>{{ row.loss_cnt }}</td>
             <td>{{ calcWinRate(row.win_cnt, row.loss_cnt) }}%</td>
-            <td>{{ row.current_rate }}<br /><span>{{ row.current_rate_date }}</span></td>
+            <td>{{ row.current_rate }}<br /><span>{{ formatDate(row.current_rate_date) }}</span></td>
             <td :class="rateDeff(row.current_rate, row.history_rate1).class">
               {{ rateDeff(row.current_rate, row.history_rate1).value }}
             </td>
-            <td>{{ row.history_rate1 }}<br /><span>{{ row.history_rate1_date }}</span></td>
-            <td>{{ row.history_rate2 }}<br /><span>{{ row.history_rate2_date }}</span></td>
+            <td>{{ row.history_rate1 }}<br /><span>{{ formatDate(row.history_rate1_date) }}</span></td>
+            <td>{{ row.history_rate2 }}<br /><span>{{ formatDate(row.history_rate2_date) }}</span></td>
           </tr>
         </tbody>
       </table>
