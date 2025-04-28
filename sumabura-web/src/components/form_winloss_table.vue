@@ -12,6 +12,7 @@ const {
   nickname,
   winlossTable,
   updateRate,
+  isSearchDisabled,
   isMainTopRoute,
   formSearch,
   formRateSaveUpdate,
@@ -26,9 +27,9 @@ const {
       <div class="search" v-if="isMainTopRoute">
         <!-- 略称検索 -->
         <form @submit.prevent="formSearch">
-          <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" />
-          <button type="submit" name="search">検索</button>
-          <button type="submit" name="cancel">解除</button>
+          <input type="text" id="nickname" v-model="nickname" placeholder="略称検索" :disabled="isSearchDisabled"/>
+          <button type="submit" name="search" :disabled="isSearchDisabled">検索</button>
+          <button type="submit" name="cancel" :disabled="!isSearchDisabled">解除</button>
         </form>
       </div>
       <div class="rate-update" v-if="isMainTopRoute && useid">

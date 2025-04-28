@@ -9,6 +9,7 @@ export function useWinlossTable(emit) {
   const nickname = ref('');
   const winlossTable = ref([]);
   const updateRate = ref('');
+  const isSearchDisabled = ref(false); // 検索活性・非活性
   // ルートによるフラグ設定 
   const route = useRoute();
   const isMainTopRoute = computed(() => route.name === 'main_top');
@@ -17,6 +18,7 @@ export function useWinlossTable(emit) {
     useid.value = '';
     nickname.value = '';
     updateRate.value = '';
+    isSearchDisabled.value = false;
     emit('selected-useid', useid.value);
     winlossTable.value = await getWinLossTable();
   }
@@ -28,11 +30,15 @@ export function useWinlossTable(emit) {
       winlossTable.value = await getWinLossTable(nickname.value);
       if (winlossTable.value.length === 1) {
         useid.value = winlossTable.value[0].useid;
-        updateRate.value = winlossTable.value[0].current_rate;
+        updateRate.value = winlossTable.value[0].current_rate
+        isSearchDisabled.value = true; // 非活性
         emit('selected-useid', useid.value);
+      } else if (winlossTable.value.length !== 1) {
+        nickname.value = '';
       }
     } else if (action === 'cancel') {
       await initialize();
+      isSearchDisabled.value = false; // 活性
     }
   }
   /** [event]レート更新・保存 */
@@ -75,6 +81,7 @@ export function useWinlossTable(emit) {
     nickname,
     winlossTable,
     updateRate,
+    isSearchDisabled,
     isMainTopRoute,
     formSearch,
     formRateSaveUpdate,

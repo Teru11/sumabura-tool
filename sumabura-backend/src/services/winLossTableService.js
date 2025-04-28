@@ -10,5 +10,9 @@ export async function fetchWinLossTable(nickname) {
     }
 
     /** 勝率表取得 */
-    return await selectWinLossTable(useid);
+    let data = await selectWinLossTable(useid);
+    if (!data || data.length === 0) {
+        data = await selectWinLossTable(null);
+    }
+    return data;
 }

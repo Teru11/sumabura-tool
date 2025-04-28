@@ -6,6 +6,7 @@ export function useFighterManager() {
   /** model */
   const fid = ref('');
   const nickname = ref('');
+  const isSearchDisabled = ref(true); // 検索活性・非活性
   const fighterInfo = ref(null);
   const updateNickname = ref('');
   const message = ref('');
@@ -16,6 +17,7 @@ export function useFighterManager() {
     fighterInfo.value = await getFighterInfo(nickname.value);
     if (fighterInfo.value) {
       fid.value = fighterInfo.value.fid;
+      isSearchDisabled.value = false;
     }
   }
   /** [event]プレイヤー管理（追加・削除） */
@@ -80,6 +82,7 @@ export function useFighterManager() {
   return {
     fid,
     nickname,
+    isSearchDisabled,
     fighterInfo,
     updateNickname,
     message,

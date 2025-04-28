@@ -61,6 +61,11 @@ input:focus {
   outline: none;                                      /* デフォルトのフォーカス枠を非表示 */
   box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25); /* フォーカス時の影 */
 }
+input:disabled {
+  background-color: #e9ecef; /* 薄いグレー */
+  color: #6c757d;            /* グレー文字 */
+  border-color: #ced4da;
+}
 /** button */
 button {
   margin: 0 2px;
@@ -90,6 +95,12 @@ button:focus {
 button:active {
   background-color: #854900;  /* アクティブ時の背景色 */
   border-color: #683700;      /* アクティブ時の枠線色 */
+}
+button:disabled {
+  background-color: #6c757d; /* 薄いグレーっぽいボタン */
+  color: #ffffff;            /* 白文字（見やすく） */
+  border-color: #ced4da;
+  cursor: not-allowed;         /* カーソルも禁止マーク */
 }
 /** textarea */
 textarea {

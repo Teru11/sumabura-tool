@@ -5,6 +5,7 @@ import { getFighterImage } from '@/assets/js/common.js';
 const {
   fid,
   nickname,
+  isSearchDisabled,
   fighterInfo,
   updateNickname,
   message,
@@ -38,8 +39,8 @@ const {
         </tbody>
       </table>
       <form @submit.prevent="formUpdateManager">
-        <button type="submit" name="add">追加</button>
-        <button type="submit" name="delete">削除</button>
+        <button type="submit" name="add" :disabled="isSearchDisabled">追加</button>
+        <button type="submit" name="delete" :disabled="isSearchDisabled">削除</button>
       </form>
     </div>
 
@@ -48,8 +49,8 @@ const {
       <span>:</span>
       <span style="margin-left: 20px">{{ fighterInfo?.nickname || '' }}</span>
       <form @submit.prevent="formUpdateNickname">
-        <input type="text" id="updateNickname" v-model="updateNickname" :placeholder="`${fighterInfo?.nickname || ''}`"/>
-        <button type="submit" name="update">略称名変更</button>
+        <input type="text" id="updateNickname" v-model="updateNickname" :placeholder="`${fighterInfo?.nickname || ''}`" :disabled="isSearchDisabled"/>
+        <button type="submit" name="update" :disabled="isSearchDisabled">略称名変更</button>
       </form>
     </div>
   </div>
