@@ -32,7 +32,7 @@ const { fighterListTable } = useSideLeft();
 .table-scroll {
   display: block;
   overflow-y: auto;
-  max-height: 798px; /** ディスプレイに合わせる */
+  max-height: 87vh;
 }
 /* スクロールバー全体 */
 .table-scroll::-webkit-scrollbar {

@@ -36,6 +36,7 @@ const isMainTopRoute = computed(() => route.name === "main_top");
 <style scoped>
 .main {
   display: flex;
+  height: 92vh;
 }
 .center {
   margin: 20px;

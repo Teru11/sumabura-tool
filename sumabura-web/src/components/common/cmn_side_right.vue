@@ -18,7 +18,7 @@ const {
         <span>負数:{{ loss_cnt }}</span>
         <span>勝率:{{ calcWinRate(win_cnt, loss_cnt) }}%</span>
       </div>
-      <table class="side-battle-history">
+      <table class="side-battle-history table-scroll">
         <tbody>
           <tr v-for="row in todayBattleHistoryTable" :key="row.history_date">
             <td><img v-if="row.useid" :src="getFighterImage(row.useid)" /></td>
@@ -66,5 +66,25 @@ const {
   width: 60px;
   font-size: 20px;
   font-weight: 700;
+}
+/** table */
+.table-scroll {
+  display: block;
+  overflow-y: auto;
+  max-height: 80vh;
+}
+/* スクロールバー全体 */
+.table-scroll::-webkit-scrollbar {
+  width: 8px;              /* スクロールバーの幅を調整 */
+  background: transparent; /* 背景を透明にする */
+}
+/* スクロールバーのスライダー部分 */
+.table-scroll::-webkit-scrollbar-thumb {
+  background-color: #888; /* スライダーの色 */
+  border-radius: 4px;         /* 角丸にする */
+}
+/* スクロールバーのスライダー部分のホバー状態 */
+.table-scroll::-webkit-scrollbar-thumb:hover {
+  background-color: #555; /* ホバー時の色 */
 }
 </style>

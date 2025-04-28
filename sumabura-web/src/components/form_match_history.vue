@@ -42,7 +42,7 @@ const {
 .table-scroll {
   display: block;
   overflow-y: auto;
-  max-height: 120px;
+  max-height: 25vh;
 }
 .match-history-table .date {
   width: 130px;
