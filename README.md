@@ -25,17 +25,10 @@ RDB:PostgreSQL<br>
 3. [PostgreSQLインストール](https://www.postgresql.jp/download)
 
 # サーバー実行
+
 ```shell
 # バック&フロント
 ./server-open.bat
-```
-```shell
-# バックのみ
-cd sumabura-backend && npm run start:dev
-```
-```shell
-# フロントのみ
-cd sumabura-web && npm run dev
 ```
 
 # AI定型文
@@ -49,11 +42,6 @@ DB：PostgreSQL
 
 # 課題
 4.  [Vue]スクロールの大きさを調整(全体で画面サイズを指定できるようにしたい。他は%指定)
-7.  [infra]データ移行ツール
-・publicを本番スキーマ―に指定。（デフォルト）
-・devはtest
-・開発時に本番からdevにデータコピー
-
 8. [infra]サーバー起動ツール
 ・DBは基本閉じてる状態にしておきたい。
 ・起動時にDBを起動（終了時は開いてる状態でいいかな）
@@ -62,5 +50,3 @@ DB：PostgreSQL
 
 9. [infra]定期的に本番データをCSV化し、GITに上げれるツール作成
 ・履歴テーブルをクリーンにする。（何行か残す）
-
-10. [backend]使用していない略称検索の場合、勝率表全検索に変更する。

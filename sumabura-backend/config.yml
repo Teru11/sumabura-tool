@@ -17,4 +17,4 @@ database:
     database: 'sumabura'
     password: 'postgres'
     port: 5432
-    schema: 'prd'
+    schema: 'public'
