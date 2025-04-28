@@ -5,6 +5,8 @@ const { Pool } = pkg;
 
 const ENV = process.env.ENV || 'dev';
 const dbConfig = config.database[ENV === 'prd' ? 'production' : 'development'];
+console.log("env:", ENV);
+console.log("schema:", dbConfig.schema);
 
 // DB接続プール
 const pool = new Pool({

@@ -43,14 +43,20 @@ npm install
 npm install axios
 # イベントバス（状態設定）インストール
 npm install mitt
+# 本番サーバー起動用
+npm install -g serve
 ```
 
 ### 実行
 ```sh
+# サーバー起動（http://localhost:5173/)
 npm run dev
 ```
 
-### Compile and Minify for Production
+### 本番
 ```sh
+# ビルド
 npm run build
+# サーバー起動（http://localhost:8080/)
+serve -l 8080 dist
 ```

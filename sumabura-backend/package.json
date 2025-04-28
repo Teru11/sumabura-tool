@@ -9,8 +9,8 @@
   },
   "scripts": {
     "test": "set NODE_OPTIONS=--experimental-vm-modules && jest",
-    "start:dev": "node src/application.js",
-    "start:prd": "NODE_ENV=production node src/application.js"
+    "start:dev": "set ENV=dev&& node src/application.js",
+    "start:prd": "set ENV=prd&& node src/application.js"
   },
   "devDependencies": {
     "jest": "^29.7.0",

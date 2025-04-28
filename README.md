@@ -41,10 +41,10 @@ DB：PostgreSQL
 ```
 
 # 課題
-2. [infra]サーバー起動ツール
+1. [infra]サーバー起動ツール
     - DBは基本閉じてる状態にしておきたい。
     - 起動時にDBを起動（終了時は開いてる状態でいいかな）
-3. [infra]定期的に本番データ{publicスキーマ}をCSV化し、GiTに上げれるツール作成
+2. [infra]定期的に本番データ{publicスキーマ}をCSV化し、GiTに上げれるツール作成
     - 履歴テーブルをクリーンにする。（何行か残す）
     - batかps1かな
     - 場所はsumabura-infra/database/backup/
