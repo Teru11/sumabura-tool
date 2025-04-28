@@ -97,18 +97,25 @@ export async function selectEnemyInfo(useid, fid) {
 export async function selectEnemyListByUseId(useid) {
   const sql = `
               select 
-                wm.fid as fid
-                , fm.fname as fname
-                , wm.win_cnt as win_cnt
-                , wm.loss_cnt as loss_cnt
-                , wm.memo as memo 
+                  wm.fid as fid,
+                  fm.fname as fname,
+                  wm.win_cnt as win_cnt,
+                  wm.loss_cnt as loss_cnt,
+                  wm.win_cnt + wm.loss_cnt as total,
+                  case 
+                      when (wm.win_cnt + wm.loss_cnt) > 0 
+                      then round(wm.win_cnt * 1.0 / (wm.win_cnt + wm.loss_cnt), 3) 
+                      else 0 
+                  end as win_rate,
+                  wm.memo as memo 
               from 
-                ${pool.options.schema}.win_loss_manager as wm 
-                inner join ${pool.options.schema}.fighter_master as fm 
-                  on fm.id = wm.fid 
+                  ${pool.options.schema}.win_loss_manager as wm 
+                  inner join ${pool.options.schema}.fighter_master as fm 
+                      on fm.id = wm.fid 
               where 
-                wm.useid = ${useid} 
-              order by fid;
+                  wm.useid = ${useid} 
+              order by 
+                  wm.fid;
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {
@@ -121,19 +128,25 @@ export async function selectEnemyListByUseId(useid) {
 export async function selectEnemyListByALL() {
   const sql = `
               select 
-                wm.fid as fid
-                , fm.fname as fname
-                , sum(wm.win_cnt) as win_cnt
-                , sum(wm.loss_cnt) as loss_cnt
-                , '' as memo 
+                  wm.fid as fid,
+                  fm.fname as fname,
+                  sum(wm.win_cnt) as win_cnt,
+                  sum(wm.loss_cnt) as loss_cnt,
+                  sum(wm.win_cnt) + sum(wm.loss_cnt) as total,
+                  case 
+                      when sum(wm.win_cnt) + sum(wm.loss_cnt) > 0 
+                      then round(sum(wm.win_cnt) * 1.0 / (sum(wm.win_cnt) + sum(wm.loss_cnt)), 3) 
+                      else 0 
+                  end as win_rate,
+                  '' as memo 
               from 
-                ${pool.options.schema}.win_loss_manager as wm 
-                inner join ${pool.options.schema}.fighter_master as fm 
-                  on fm.id = wm.fid 
+                  ${pool.options.schema}.win_loss_manager as wm 
+                  inner join ${pool.options.schema}.fighter_master as fm on fm.id = wm.fid 
               group by 
-                wm.fid,
-                fm.fname
-              order by fid;
+                  wm.fid,
+                  fm.fname 
+              order by 
+                  wm.fid;
               `;
   const res = await pool.query(sql);
   if (res.rows.length === 0) {

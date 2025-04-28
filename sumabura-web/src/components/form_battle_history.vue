@@ -5,6 +5,9 @@ import { calcWinRate, getFighterImage } from '@/assets/js/common.js';
 const {
   useid,
   nickname,
+  sortBy,
+  sortKey,
+  sortOrder,
   winlossTable,
   fighterTable,
   formSearch
@@ -52,10 +55,20 @@ const {
         <thead>
           <tr>
             <th colspan="2" class="th-fighter">ファイター</th>
-            <th class="th-data">出現数</th>
+            <th class="th-data" @click="sortBy('total')">出現数&nbsp;<span>▼</span>
+              <span v-if="sortKey === 'total'">
+                <span v-if="sortOrder === 1">↑</span><!-- 昇順 -->
+                <span v-if="sortOrder === -1">↓</span><!-- 降順 -->
+              </span>
+            </th>
             <th class="th-data">勝数</th>
             <th class="th-data">負数</th>
-            <th class="th-data">勝率</th>
+            <th class="th-data" @click="sortBy('win_rate')">勝率&nbsp;<span>▼</span>
+              <span v-if="sortKey === 'win_rate'">
+                <span v-if="sortOrder === 1">↑</span><!-- 昇順 -->
+                <span v-if="sortOrder === -1">↓</span><!-- 降順 -->
+              </span>
+            </th>
             <th class="th-memo">ファイターメモ</th>
           </tr>
         </thead>
@@ -63,10 +76,10 @@ const {
           <tr v-for="row in fighterTable" :key="row.fid">
             <td class="fighter-image"><img v-if="row.fid" :src="getFighterImage(row.fid, '.')" /></td>
             <td class="fighter-name">{{ row.fname }}</td>
-            <td>{{ Number(row.win_cnt) + Number(row.loss_cnt) }}</td>
+            <td>{{ Number(row.total) }}</td>
             <td>{{ row.win_cnt }}</td>
             <td>{{ row.loss_cnt }}</td>
-            <td>{{ calcWinRate(row.win_cnt, row.loss_cnt) }}%</td>
+            <td>{{ Math.round(Number(row.win_rate) * 100) }}%</td>
             <td class="memo">{{ row.memo }}</td>
           </tr>
         </tbody>
